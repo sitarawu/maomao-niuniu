@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8F7F5">
+<title>毛毛牛牛健康屋</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+:root{
+  --bg:#F8F7F5; --bg2:#EFEDE9; --card:#FFFFFF; --ink:#3A3733; --ink2:#8A847B;
+  --line:#E7E2D9; --accent:#E5859F; --accent2:#C65D7B;
+  --mao:#E5859F; --mao-deep:#C65D7B; --niu:#4FA390; --niu-deep:#3A7F70;
+  --sleep:#7C93D6; --ex:#3FA7B5; --mental:#A98CD6; --habit:#5FBF8F;
+  --radius:20px;
+  --shadow:0 1px 2px rgba(58,53,46,.04), 0 10px 28px rgba(58,53,46,.07);
+}
+body{
+  background:var(--bg); color:var(--ink); font-size:15px; line-height:1.6;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+  padding-bottom:calc(88px + env(safe-area-inset-bottom));
+}
+button{font-family:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{margin:0;font-weight:600}
+input,textarea,select{font-family:inherit;font-size:15px;color:var(--ink)}
+.serif{font-family:"Songti SC","STSong","Noto Serif SC",Georgia,serif}
+
+/* topbar */
+.topbar{
+  position:sticky; top:0; z-index:20; display:flex; align-items:center; gap:8px;
+  padding:calc(10px + env(safe-area-inset-top)) 14px 9px;
+  background:rgba(248,247,245,.9); backdrop-filter:saturate(1.5) blur(14px);
+}
+.brand{display:flex;flex-direction:column;line-height:1.15;margin-right:auto;min-width:0}
+.brand b{font-size:16px;letter-spacing:.05em;font-family:"Songti SC","STSong","Noto Serif SC",Georgia,serif;white-space:nowrap}
+.brand span{font-size:10.5px;color:var(--ink2);letter-spacing:.1em;white-space:nowrap}
+.uswitch{display:flex;gap:3px;background:var(--bg2);border-radius:99px;padding:3px}
+.uswitch button{
+  border:0;background:transparent;font-size:13px;padding:5px 11px;border-radius:99px;
+  color:var(--ink2);display:flex;align-items:center;gap:4px;letter-spacing:.02em;transition:.18s;
+}
+.uswitch button .e{font-size:15px}
+.uswitch button.on{color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.uswitch button.on[data-user="maomao"]{background:var(--mao)}
+.uswitch button.on[data-user="niuniu"]{background:var(--niu)}
+.icon-btn{
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+  display:flex;align-items:center;justify-content:center;color:var(--ink2);font-size:16px;flex:none;
+}
+.icon-btn:active{transform:scale(.93)}
+
+main{padding:8px 14px 26px; max-width:600px; margin:0 auto}
+
+/* hero */
+.hero{border-radius:24px; padding:20px 20px 16px; color:#fff; box-shadow:0 14px 34px rgba(58,53,46,.18)}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hero-date{font-size:14px;letter-spacing:.05em;opacity:.92}
+.hero-user{font-size:14px;font-weight:600;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:99px}
+.hero-mid{display:flex;align-items:center;gap:18px}
+.ring-wrap{position:relative;width:118px;height:118px;flex:none}
+.ring{width:118px;height:118px}
+.ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-num b{font-size:34px;line-height:1;font-weight:700;letter-spacing:-.02em}
+.ring-num i{font-style:normal;font-size:11px;opacity:.85}
+.hero-side{display:flex;flex-direction:column;gap:6px;min-width:0}
+.grade{font-size:20px;font-weight:700;letter-spacing:.03em}
+.hero-sub{font-size:12px;opacity:.82}
+.hero-streak{font-size:12.5px;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:99px;align-self:flex-start}
+.hero-hint{margin-top:12px;font-size:12px;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:99px;display:inline-block}
+
+.starbanner{
+  margin-top:12px;border-radius:16px;padding:11px 16px;background:#FBEAF0;color:#B04E6C;
+  font-size:13.5px;border:1px solid #F2C9D8;display:flex;align-items:center;gap:6px;
+}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-top:12px}
+.card-title{font-size:14px;font-weight:600;margin-bottom:12px;letter-spacing:.03em;display:flex;align-items:center;gap:6px}
+
+/* category cards */
+.cat{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin-top:12px;cursor:pointer;transition:.15s}
+.cat:active{transform:scale(.985)}
+.cat-ico{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex:none}
+.cat-mid{flex:1;min-width:0}
+.cat-name{font-size:15px;font-weight:600}
+.cat-sub{font-size:12px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-score{font-size:22px;font-weight:700}
+.cat-score span{font-size:11px;font-weight:500;margin-left:1px;opacity:.7}
+
+/* habit chips */
+.hchips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.hchip{
+  display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);
+  border-radius:14px;padding:10px 12px;cursor:pointer;transition:.15s;user-select:none;
+}
+.hchip .he{font-size:18px}
+.hchip .hn{font-size:13px;font-weight:500;flex:1}
+.hchip .hs{font-size:11px;color:var(--ink2)}
+.hchip.done{background:#EAF6EF;border-color:#B9E0CA}
+.hchip.done .hs{color:var(--habit);font-weight:600}
+.hchip.half{background:#EEF3FA;border-color:#C9D8EC}
+.hchip button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:15px;line-height:1;flex:none}
+.hchip button:active{transform:scale(.9)}
+
+/* segment */
+.seg{display:flex;gap:4px;background:var(--bg2);border-radius:12px;padding:4px;margin-top:12px}
+.seg button{flex:1;border:0;background:transparent;padding:7px 0;border-radius:9px;font-size:13px;color:var(--ink2)}
+.seg button.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+/* charts */
+.chart-wrap{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-top:12px}
+.chart-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.chart{width:100%;height:auto;display:block}
+.chart .grid{stroke:#ECE8E1;stroke-width:1}
+.chart .axis{fill:#9A928A;font-size:10px}
+.legend{display:flex;gap:14px;justify-content:center;margin-top:8px;font-size:12px;color:var(--ink2)}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+/* stats chips */
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.stat{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:12px;text-align:center}
+.stat b{display:block;font-size:19px;line-height:1.2}
+.stat span{font-size:11px;color:var(--ink2)}
+
+/* avg bar */
+.avgbar{margin-top:12px}
+.ab-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:5px}
+.ab-head b{font-size:14px}
+.bar{height:10px;border-radius:99px;background:var(--bg2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;transition:width .5s}
+.cmp-row{display:flex;align-items:center;gap:8px;margin-top:6px}
+.cmp-lbl{flex:none;width:48px;font-size:12px;color:var(--ink2)}
+.cmp-row .bar{flex:1}
+
+/* verdict */
+.verdict{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-top:12px;text-align:center}
+.verdict .v-em{font-size:32px}
+.verdict .v-t{font-size:17px;font-weight:700;margin-top:4px}
+.verdict .v-s{font-size:12px;color:var(--ink2);margin-top:2px}
+.vs{display:flex;gap:10px;margin-top:14px}
+.vs .vcard{flex:1;border-radius:14px;padding:12px;text-align:center}
+.vs .vcard b{font-size:24px;display:block}
+.vs .vcard span{font-size:12px;opacity:.85}
+.vcard.mao{background:#FBEAF0;color:var(--mao-deep)}
+.vcard.niu{background:#E6F2EF;color:var(--niu-deep)}
+
+/* calendar */
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.cal-head .m{font-size:16px;font-weight:700}
+.cal-head button{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:16px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
+.cal-wd{text-align:center;font-size:11px;color:var(--ink2);padding:4px 0}
+.cal{border:0;aspect-ratio:1;border-radius:10px;font-size:12px;background:var(--bg2);color:var(--ink);position:relative}
+.cal.none{background:#EFECE7;color:#B8B2A8}
+.cal.s{background:var(--habit);color:#fff;font-weight:700}
+.cal.a{background:#8FCBB8;color:#fff;font-weight:600}
+.cal.b{background:#9FB8E8;color:#35466F;font-weight:600}
+.cal.c{background:#C9A8E0;color:#5A3A78;font-weight:600}
+.cal.d{background:#E7A2A2;color:#7A3A3A;font-weight:600}
+.cal.today{outline:2px solid var(--accent);outline-offset:1px}
+.cal-legend{display:flex;gap:8px;justify-content:center;align-items:center;font-size:10.5px;color:var(--ink2);margin-top:10px;flex-wrap:wrap}
+.cal-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+/* notes */
+.note{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:13px 15px;margin-top:10px}
+.note .n-head{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2)}
+.note .n-head b{color:var(--ink)}
+.note .n-body{font-size:14.5px;margin:7px 0 4px;white-space:pre-wrap;word-break:break-word}
+.note .n-foot{font-size:11px;color:var(--ink2);display:flex;align-items:center;gap:10px}
+.note .n-del{margin-left:auto;color:var(--ink2);border:0;background:transparent;font-size:11px}
+.note img{max-width:100%;border-radius:12px;margin-top:8px}
+.note.mao{border-left:4px solid var(--mao)}
+.note.niu{border-left:4px solid var(--niu)}
+
+/* badges */
+.badges{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-top:10px}
+.badge{flex:none;width:88px;background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:10px 6px;text-align:center}
+.badge .be{font-size:24px}
+.badge .bl{font-size:10.5px;color:var(--ink2);margin-top:4px;line-height:1.3}
+.badge.lock{opacity:.4;filter:grayscale(.8)}
+
+/* form */
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;color:var(--ink2);margin-bottom:5px}
+.field input[type=text],.field input[type=number],.field input[type=time],.field textarea,.field select{
+  width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg);outline:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.field textarea{min-height:70px;resize:vertical}
+.row{display:flex;gap:10px}
+.row .field{flex:1}
+.btn{
+  width:100%;border:0;border-radius:14px;padding:13px;font-size:15px;font-weight:600;color:#fff;margin-top:6px;
+  background:linear-gradient(150deg,var(--accent),var(--accent2));
+}
+.btn.gray{background:#CFC5B6}
+.btn.small{width:auto;padding:8px 16px;font-size:13px;border-radius:10px;margin-top:0}
+.type-toggle{display:flex;gap:8px}
+.type-toggle button{flex:1;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px;font-size:14px;color:var(--ink2)}
+.type-toggle button.on{background:#EAF4F6;border-color:var(--ex);color:var(--ex);font-weight:600}
+.exitem{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:9px 12px;margin-top:8px;font-size:13px}
+.exitem .xi{font-size:16px}
+.exitem .xr{margin-left:auto;color:var(--ink2);border:0;background:transparent;font-size:12px}
+
+/* stars */
+.stars{display:flex;gap:8px;font-size:26px}
+.stars button{border:0;background:transparent;font-size:24px;padding:0;filter:grayscale(1);opacity:.4}
+.stars button.on{filter:none;opacity:1}
+
+/* modal / sheet */
+#modal-root{position:fixed;inset:0;z-index:60;display:none}
+#modal-root.open{display:block}
+.modal-backdrop{position:absolute;inset:0;background:rgba(58,53,46,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet{
+  background:var(--bg);width:100%;max-width:600px;max-height:94vh;overflow:auto;
+  border-radius:24px 24px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom));
+  animation:up .26s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes up{from{transform:translateY(24px);opacity:.5}to{transform:none;opacity:1}}
+.sheet-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sheet-head .sh-title{font-size:17px;font-weight:700;margin-right:auto}
+.sheet-head .close{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:15px}
+.sect{margin-top:16px}
+.sect-h{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.hours-hint{font-size:12px;color:var(--accent);font-weight:600}
+.photo-preview{margin-top:8px}
+.photo-preview img{max-width:100%;max-height:200px;border-radius:12px}
+.photo-preview .rm{display:inline-block;margin-top:6px;font-size:12px;color:var(--ink2)}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(8px);
+  background:rgba(58,53,46,.94);color:#fff;font-size:13.5px;padding:11px 18px;border-radius:99px;z-index:80;
+  opacity:0;transition:.25s;pointer-events:none;max-width:86vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%)}
+
+/* tabbar */
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;
+  padding:7px 8px calc(7px + env(safe-area-inset-bottom));
+  background:rgba(248,247,245,.96);backdrop-filter:saturate(1.5) blur(14px);border-top:1px solid var(--line);
+}
+.tab{flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 0;color:var(--ink2);font-size:10.5px;letter-spacing:.04em}
+.tab .ti{font-size:20px;line-height:1.2}
+.tab.on{color:var(--accent);font-weight:600}
+
+@media (max-width:420px){
+  .brand span{display:none}
+  .brand b{font-size:15px}
+  .uswitch button{padding:5px 9px;font-size:12.5px}
+  .uswitch button .e{font-size:14px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><b>毛毛牛牛健康屋</b><span>一起住 · 一起健康</span></div>
+  <div class="uswitch" id="uswitch">
+    <button data-user="maomao"><span class="e">🐱</span>毛毛</button>
+    <button data-user="niuniu"><span class="e">🐮</span>牛牛</button>
+  </div>
+  <button class="icon-btn" data-action="settings" aria-label="设置">⚙️</button>
+</header>
+
+<main id="view"></main>
+
+<nav class="tabbar">
+  <button class="tab" data-nav="today"><span class="ti">🏠</span>今天</button>
+  <button class="tab" data-nav="calendar"><span class="ti">📅</span>记录</button>
+  <button class="tab" data-nav="trend"><span class="ti">📈</span>趋势</button>
+  <button class="tab" data-nav="pk"><span class="ti">🏆</span>PK</button>
+  <button class="tab" data-nav="interact"><span class="ti">💬</span>互动</button>
+</nav>
+
+<div id="modal-root"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function pad(n){return String(n).padStart(2,'0')}
+function fmt(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function todayStr(){return fmt(new Date())}
+function ymOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function tint(hex,a){
+  var h=String(hex||'').replace('#','');
+  if(h.length===3)h=h.split('').map(function(x){return x+x}).join('');
+  var r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
+  if(isNaN(r)||isNaN(g)||isNaN(b))return 'rgba(154,144,134,'+a+')';
+  return 'rgba('+r+','+g+','+b+','+a+')';
+}
+function lastNDays(n){
+  var arr=[],now=new Date();
+  for(var i=n-1;i>=0;i--){var x=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i);arr.push(fmt(x))}
+  return arr;
+}
+function shortDate(ds){var p=ds.split('-');return Number(p[1])+'/'+Number(p[2])}
+function niceDate(ds){
+  var p=ds.split('-').map(Number);
+  var d=new Date(p[0],p[1]-1,p[2]);
+  var wk=['日','一','二','三','四','五','六'][d.getDay()];
+  return p[1]+'月'+p[2]+'日 · 星期'+wk;
+}
+function toMin(s){var p=String(s||'').split(':');return (Number(p[0])||0)*60+(Number(p[1])||0)}
+function hoursBetween(bed,wake){
+  if(!bed||!wake)return '';
+  var diff=(toMin(wake)-toMin(bed)+1440)%1440;
+  if(diff===0)diff=1440;
+  return Math.round(diff/6)/10;
+}
+function toast(msg){
+  var el=$('#toast');el.textContent=msg;el.classList.add('show');
+  clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show')},1800);
+}
+
+/* ---------- config ---------- */
+var USERS={
+  maomao:{id:'maomao',name:'毛毛',emoji:'🐱',color:'#E5859F',deep:'#C65D7B'},
+  niuniu:{id:'niuniu',name:'牛牛',emoji:'🐮',color:'#4FA390',deep:'#3A7F70'}
+};
+var USER_IDS=['maomao','niuniu'];
+var CATS=[
+  {id:'sleep',name:'睡眠',emoji:'😴',weight:0.25,color:'#7C93D6'},
+  {id:'exercise',name:'锻炼',emoji:'🏃',weight:0.25,color:'#3FA7B5'},
+  {id:'mental',name:'精神',emoji:'📚',weight:0.20,color:'#A98CD6'},
+  {id:'habits',name:'习惯',emoji:'🌿',weight:0.30,color:'#5FBF8F'}
+];
+var HABITS=[
+  {id:'brush',name:'早晚刷牙',emoji:'🪥',type:'tri'},
+  {id:'water',name:'喝足水',emoji:'💧',type:'step'},
+  {id:'bowel',name:'规律排便',emoji:'🚽',type:'bool'},
+  {id:'veg',name:'吃蔬果',emoji:'🥗',type:'bool'},
+  {id:'screen',name:'少屏幕',emoji:'📵',type:'bool'}
+];
+var PERIODS=[{id:7,label:'周'},{id:30,label:'月'},{id:90,label:'季'},{id:365,label:'年'}];
+
+/* ---------- state ---------- */
+var store=null, apiMode='local';
+var ui={view:'today',user:'maomao',period:7,month:ymOf(new Date())};
+var sheet={date:null,user:null,rec:null};
+
+function defaultSettings(){return {waterGoal:8,exerciseGoal:150}}
+function emptyRecord(){
+  return {sleep:{bedtime:'',wake:'',hours:0,quality:3},exercise:[],mental:{read:0,book:'',movie:'',idea:'',photo:''},habits:{brush:0,water:0,bowel:false,veg:false,screen:false}};
+}
+
+/* ---------- persistence ---------- */
+function normalize(s){
+  s=s||{};
+  s.version=1;
+  s.settings=Object.assign(defaultSettings(),s.settings||{});
+  if(!s.days||typeof s.days!=='object')s.days={};
+  USER_IDS.forEach(function(u){if(!s.days[u]||typeof s.days[u]!=='object')s.days[u]={}});
+  if(!Array.isArray(s.notes))s.notes=[];
+  return s;
+}
+var cloud=null;
+function loadCloud(){try{cloud=JSON.parse(localStorage.getItem('healthhouse_cloud')||'null')||null}catch(e){cloud=null}}
+function sbBase(){return String(cloud.url||'').replace(/\/+$/,'')}
+async function sbGet(){
+  var r=await fetch(sbBase()+'/rest/v1/healthhouse?id=eq.main&select=data',{headers:{'apikey':cloud.key,'Authorization':'Bearer '+cloud.key},cache:'no-store'});
+  if(!r.ok)throw new Error('sb '+r.status);
+  var j=await r.json();
+  return (j&&j.length&&j[0]&&j[0].data)||null;
+}
+async function sbSet(data){
+  await fetch(sbBase()+'/rest/v1/healthhouse',{method:'POST',headers:{'apikey':cloud.key,'Authorization':'Bearer '+cloud.key,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'},body:JSON.stringify({id:'main',data:data})});
+}
+async function load(){
+  loadCloud();
+  if(cloud&&cloud.url&&cloud.key){
+    try{apiMode='cloud';return await sbGet()}catch(e){}
+  }
+  try{
+    var r=await fetch('api/state',{cache:'no-store'});
+    if(r.ok){var j=await r.json();apiMode='server';return j.state||null}
+  }catch(e){}
+  apiMode='local';
+  try{return JSON.parse(localStorage.getItem('healthhouse_store')||'null')}catch(e){return null}
+}
+function applyOp(s,type,payload){
+  s=normalize(s);
+  if(type==='setDay'){
+    var rec=payload.record||emptyRecord();
+    s.days[payload.user]=s.days[payload.user]||{};
+    s.days[payload.user][payload.date]=rec;
+  }
+  else if(type==='deleteDay'){delete s.days[payload.user][payload.date]}
+  else if(type==='addNote'){s.notes.unshift(payload.note)}
+  else if(type==='deleteNote'){s.notes=s.notes.filter(function(n){return n.id!==payload.id})}
+  else if(type==='updateSettings'){s.settings=Object.assign({},s.settings,payload)}
+  else if(type==='replaceState'){s=normalize(payload)}
+  return s;
+}
+async function op(type,payload){
+  if(apiMode==='cloud'){
+    try{
+      var cur=null;
+      try{cur=await sbGet()}catch(e){}
+      store=normalize(applyOp(cur||null,type,payload));
+      await sbSet(store);
+    }catch(e){toast('云端同步失败，请检查网络');return}
+  }else if(apiMode==='server'){
+    try{
+      var r=await fetch('api/op',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:type,payload:payload})});
+      var j=await r.json();
+      if(j&&j.state)store=normalize(j.state);
+    }catch(e){toast('同步失败，请检查网络');return}
+  }else{
+    store=applyOp(store,type,payload);
+    try{localStorage.setItem('healthhouse_store',JSON.stringify(store))}catch(e){toast('本机存储已满，建议导出备份')}
+  }
+  render();
+}
+
+/* ---------- data ---------- */
+function dayOf(user,date){return (store.days[user]||{})[date]||null}
+function dayHas(user,date){return !!dayOf(user,date)}
+function allDays(user){return Object.keys(store.days[user]||{})}
+function recordedDays(user){return allDays(user).sort()}
+
+/* ---------- scoring ---------- */
+function sleepScore(s){
+  if(!s||!s.hours)return 0;
+  var h=Number(s.hours)||0, dur=0;
+  if(h>=7&&h<=9)dur=60;
+  else if((h>=6.5&&h<7)||(h>9&&h<=9.5))dur=50;
+  else if((h>=6&&h<6.5)||(h>9.5&&h<=10))dur=38;
+  else if((h>=5&&h<6)||(h>10&&h<=11))dur=24;
+  else if(h>0)dur=12;
+  var bed=0;
+  if(s.bedtime){
+    var p=String(s.bedtime).split(':'),mins=(Number(p[0])||0)*60+(Number(p[1])||0);
+    if(mins<12*60)mins+=24*60;
+    if(mins<=22*60+30)bed=25;
+    else if(mins<=23*60)bed=22;
+    else if(mins<=23*60+59)bed=17;
+    else if(mins<=25*60)bed=12;
+    else bed=6;
+  }
+  var q=Math.max(0,Math.min(5,Number(s.quality)||0))*3;
+  return dur+bed+q;
+}
+function exerciseScore(list){
+  if(!list||!list.length)return 0;
+  var total=0,hasA=false,hasN=false;
+  list.forEach(function(e){
+    total+=Number(e.min)||0;
+    if(e.type==='有氧')hasA=true;else if(e.type==='无氧')hasN=true;
+  });
+  var dur=0;
+  if(total>=60)dur=70;else if(total>=45)dur=60;else if(total>=30)dur=50;
+  else if(total>=20)dur=38;else if(total>=10)dur=22;else dur=10;
+  var bal=(hasA&&hasN)?30:((hasA||hasN)?18:0);
+  return dur+bal;
+}
+function mentalScore(m){
+  if(!m)return 0;
+  var read=Number(m.read)||0, rs=0;
+  if(read>=60)rs=40;else if(read>=30)rs=30;else if(read>=15)rs=20;else if(read>0)rs=12;
+  var ms=(m.movie&&String(m.movie).trim())?25:0;
+  var is=(m.idea&&String(m.idea).trim())?35:0;
+  return rs+ms+is;
+}
+function habitsScore(h){
+  if(!h)return 0;
+  var brush=Number(h.brush)||0;
+  var b=brush>=2?20:brush===1?10:0;
+  var goal=Number(store.settings.waterGoal)||8;
+  var water=Math.min(Number(h.water)||0,goal*3);
+  var w=Math.round(Math.min(water,goal)/goal*20);
+  var bow=h.bowel?20:0, veg=h.veg?20:0, screen=h.screen?20:0;
+  return b+w+bow+veg+screen;
+}
+function scoresOf(user,date){
+  var r=dayOf(user,date);
+  var sleep=r&&r.sleep?sleepScore(r.sleep):0;
+  var exercise=r&&r.exercise&&r.exercise.length?exerciseScore(r.exercise):0;
+  var mental=r&&r.mental?mentalScore(r.mental):0;
+  var habits=r&&r.habits?habitsScore(r.habits):0;
+  var overall=Math.round(0.25*sleep+0.25*exercise+0.2*mental+0.3*habits);
+  var complete=0;
+  if(r&&r.sleep&&r.sleep.hours)complete++;
+  if(r&&r.exercise&&r.exercise.length)complete++;
+  if(r&&r.mental&&(r.mental.read||(r.mental.movie&&r.mental.movie.trim())||(r.mental.idea&&r.mental.idea.trim())))complete++;
+  if(r&&r.habits)complete++;
+  return {sleep:Math.round(sleep),exercise:Math.round(exercise),mental:Math.round(mental),habits:Math.round(habits),overall:overall,complete:complete};
+}
+function grade(s){
+  if(s>=90)return {l:'S',t:'健康王者'};
+  if(s>=80)return {l:'A',t:'活力满满'};
+  if(s>=70)return {l:'B',t:'状态良好'};
+  if(s>=60)return {l:'C',t:'及格啦'};
+  return {l:'D',t:'要加油啦'};
+}
+function streakOf(user){
+  var set={};recordedDays(user).forEach(function(d){set[d]=1});
+  if(!Object.keys(set).length)return 0;
+  var cur=new Date();
+  if(!set[fmt(cur)])cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()-1);
+  var s=0;
+  while(set[fmt(cur)]){s++;cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()-1)}
+  return s;
+}
+function starOf(date){
+  var a=scoresOf('maomao',date).overall, b=scoresOf('niuniu',date).overall;
+  if(a===0&&b===0)return null;
+  return a>=b?'maomao':'niuniu';
+}
+function catAvg(user,days,cat){
+  var rec=days.filter(function(d){return dayHas(user,d)});
+  if(!rec.length)return 0;
+  return Math.round(rec.reduce(function(a,d){return a+scoresOf(user,d)[cat]},0)/rec.length);
+}
+function overallAvg(user,days){
+  var rec=days.filter(function(d){return dayHas(user,d)});
+  if(!rec.length)return 0;
+  return Math.round(rec.reduce(function(a,d){return a+scoresOf(user,d).overall},0)/rec.length);
+}
+function dayExerciseMin(user,date){
+  var r=dayOf(user,date);
+  return r&&r.exercise?r.exercise.reduce(function(a,e){return a+(Number(e.min)||0)},0):0;
+}
+
+/* ---------- charts ---------- */
+function lineChart(el,labels,series,showDots){
+  var W=560,H=240,padL=32,padR=12,padT=14,padB=26;
+  var iw=W-padL-padR,ih=H-padT-padB,n=labels.length,ymax=100;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" class="chart" preserveAspectRatio="xMidYMid meet">';
+  for(var g=0;g<=4;g++){
+    var y=padT+ih-(g/4)*ih, val=Math.round(g/4*ymax);
+    svg+='<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" class="grid"/>';
+    svg+='<text x="'+(padL-7)+'" y="'+(y+3)+'" class="axis" text-anchor="end">'+val+'</text>';
+  }
+  var step=Math.max(1,Math.ceil(n/6));
+  for(var i=0;i<n;i+=step){
+    var xx=padL+(n===1?iw/2:iw*(i/(n-1)));
+    svg+='<text x="'+xx+'" y="'+(H-padB+15)+'" class="axis" text-anchor="middle">'+shortDate(labels[i])+'</text>';
+  }
+  series.forEach(function(s){
+    var pts=[];
+    for(var i=0;i<n;i++){
+      var v=Math.max(0,Math.min(ymax,Number(s.values[i])||0));
+      var x=padL+(n===1?iw/2:iw*(i/(n-1)));
+      var y=padT+ih-(v/ymax)*ih;
+      pts.push(x+','+y);
+    }
+    svg+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+s.color+'" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+    if(series.length===1)svg+='<polygon points="'+padL+','+(padT+ih)+' '+pts.join(' ')+' '+(W-padR)+','+(padT+ih)+'" fill="'+tint(s.color,0.10)+'"/>';
+    if(showDots!==false){
+      for(var j=0;j<n;j++){
+        var v2=Math.max(0,Math.min(ymax,Number(s.values[j])||0));
+        var x2=padL+(n===1?iw/2:iw*(j/(n-1)));
+        var y2=padT+ih-(v2/ymax)*ih;
+        svg+='<circle cx="'+x2+'" cy="'+y2+'" r="3.2" fill="'+s.color+'"><title>'+labels[j]+' · '+Math.round(s.values[j])+'分</title></circle>';
+      }
+    }
+  });
+  svg+='</svg>';
+  if(series.length>1)svg+='<div class="legend">'+series.map(function(s){return '<span><i style="background:'+s.color+'"></i>'+s.name+'</span>'}).join('')+'</div>';
+  el.innerHTML=svg;
+}
+function radarChart(el,axes,series){
+  var W=340,H=300,cx=W/2,cy=H/2,r=96;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" class="chart" preserveAspectRatio="xMidYMid meet">';
+  for(var g=1;g<=4;g++){
+    var rr=r*g/4, pts=[];
+    for(var i=0;i<axes.length;i++){
+      var ang=-Math.PI/2+i*2*Math.PI/axes.length;
+      pts.push((cx+rr*Math.cos(ang))+','+(cy+rr*Math.sin(ang)));
+    }
+    svg+='<polygon points="'+pts.join(' ')+'" fill="none" stroke="#EAE4DB" stroke-width="1"/>';
+  }
+  for(var a=0;a<axes.length;a++){
+    var ang2=-Math.PI/2+a*2*Math.PI/axes.length;
+    svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+r*Math.cos(ang2))+'" y2="'+(cy+r*Math.sin(ang2))+'" stroke="#EAE4DB" stroke-width="1"/>';
+    var lx=cx+(r+26)*Math.cos(ang2), ly=cy+(r+26)*Math.sin(ang2);
+    svg+='<text x="'+lx+'" y="'+(ly+4)+'" text-anchor="middle" class="axis" font-size="12">'+axes[a].label+'</text>';
+  }
+  series.forEach(function(s){
+    var pts=[];
+    for(var i=0;i<axes.length;i++){
+      var v=Math.max(0,Math.min(100,Number(s.values[i])||0));
+      var rr=r*v/100;
+      var ang=-Math.PI/2+i*2*Math.PI/axes.length;
+      pts.push((cx+rr*Math.cos(ang))+','+(cy+rr*Math.sin(ang)));
+    }
+    svg+='<polygon points="'+pts.join(' ')+'" fill="'+tint(s.color,0.22)+'" stroke="'+s.color+'" stroke-width="2.2"/>';
+  });
+  svg+='</svg>';
+  svg+='<div class="legend">'+series.map(function(s){return '<span><i style="background:'+s.color+'"></i>'+s.name+'</span>'}).join('')+'</div>';
+  el.innerHTML=svg;
+}
+function ring(score,color){
+  var pct=Math.max(0,Math.min(100,score||0)),r=52,c=2*Math.PI*r,dash=c*pct/100;
+  return '<svg viewBox="0 0 120 120" class="ring">'+
+    '<circle cx="60" cy="60" r="'+r+'" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="10"/>'+
+    '<circle cx="60" cy="60" r="'+r+'" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+dash+' '+c+'" transform="rotate(-90 60 60)"/>'+
+    '</svg>';
+}
+
+/* ---------- components ---------- */
+function gradBg(u){return 'linear-gradient(150deg,'+u.color+' 0%,'+u.deep+' 100%)'}
+function periodSel(){
+  return '<div class="seg">'+PERIODS.map(function(p){return '<button data-period="'+p.id+'" class="'+(ui.period===p.id?'on':'')+'">'+p.label+'</button>'}).join('')+'</div>';
+}
+function habitChips(h,mode){
+  h=h||{};
+  var pre=mode==='sheet'?'sh-':'quick-';
+  var html='';
+  HABITS.forEach(function(hb){
+    if(hb.type==='step'){
+      var v=h[hb.id]||0;
+      html+='<div class="hchip">'+
+        '<span class="he">'+hb.emoji+'</span><span class="hn">'+hb.name+'</span><span class="hs">'+v+'杯</span>'+
+        '<button data-action="'+pre+'water" data-hid="'+hb.id+'" data-dir="-1">−</button>'+
+        '<button data-action="'+pre+'water" data-hid="'+hb.id+'" data-dir="1">＋</button></div>';
+    }else if(hb.type==='tri'){
+      var b=h[hb.id]||0, lbl=['未刷','刷1次','早晚刷'][b];
+      var on=b>=2?'done':b===1?'half':'';
+      html+='<div class="hchip '+on+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="he">'+hb.emoji+'</span><span class="hn">'+hb.name+'</span><span class="hs">'+lbl+'</span></div>';
+    }else{
+      var on2=h[hb.id]?'done':'';
+      html+='<div class="hchip '+on2+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="he">'+hb.emoji+'</span><span class="hn">'+hb.name+'</span><span class="hs">'+(h[hb.id]?'✓':'点一下')+'</span></div>';
+    }
+  });
+  return html;
+}
+function categoryCard(c,rec,sc){
+  var detail='';
+  if(c.id==='sleep'){
+    detail = rec&&rec.sleep&&rec.sleep.hours ? ('💤 睡了 '+rec.sleep.hours+' 小时'+(rec.sleep.bedtime?(' · '+rec.sleep.bedtime+' 睡'):'')) : '还没记录昨晚的睡眠';
+  }else if(c.id==='exercise'){
+    var mins=dayExerciseMin(ui.user,todayStr());
+    detail = mins ? ('🏃 共 '+mins+' 分钟'+(rec&&rec.exercise?(' · '+rec.exercise.length+' 项'):'')) : '今天还没动起来哦';
+  }else if(c.id==='mental'){
+    var r=rec&&rec.mental, bits=[];
+    if(r&&r.read)bits.push('📖 读 '+r.read+' 分钟');
+    if(r&&r.movie)bits.push('🎬 '+r.movie);
+    if(r&&r.idea)bits.push('💡 有想法');
+    detail=bits.length?bits.join(' · '):'读点书、看部片、记个想法';
+  }else{
+    var h=rec&&rec.habits, done=h?HABITS.filter(function(x){
+      var val=h[x.id];return x.type==='step'?val>=(Number(store.settings.waterGoal)||8):x.type==='tri'?val>=2:!!val;
+    }).length:0;
+    detail=done?('✅ 完成 '+done+'/'+HABITS.length+' 项') : '从刷牙、喝水开始吧';
+  }
+  return '<div class="cat" data-action="open-day" data-date="'+todayStr()+'">'+
+    '<div class="cat-ico" style="background:'+tint(c.color,0.14)+'">'+c.emoji+'</div>'+
+    '<div class="cat-mid"><div class="cat-name">'+c.name+'</div><div class="cat-sub">'+detail+'</div></div>'+
+    '<div class="cat-score" style="color:'+c.color+'">'+sc[c.id]+'<span>分</span></div></div>';
+}
+
+/* ---------- views ---------- */
+function viewToday(){
+  var u=USERS[ui.user], sc=scoresOf(ui.user,todayStr()), rec=dayOf(ui.user,todayStr());
+  var g=grade(sc.overall), star=starOf(todayStr()), streak=streakOf(ui.user);
+  var html='<div class="hero" style="background:'+gradBg(u)+'">';
+  html+='<div class="hero-top"><div class="hero-date">'+niceDate(todayStr())+'</div><div class="hero-user">'+u.emoji+' '+u.name+'</div></div>';
+  html+='<div class="hero-mid"><div class="ring-wrap">'+ring(sc.overall)+'<div class="ring-num"><b>'+sc.overall+'</b><i>健康分</i></div></div>';
+  html+='<div class="hero-side"><div class="grade">'+g.l+' · '+g.t+'</div><div class="hero-sub">综合健康评分</div><div class="hero-streak">🔥 连续 '+streak+' 天</div></div></div>';
+  if(sc.complete<4)html+='<div class="hero-hint">今日已记录 '+sc.complete+'/4 板块，补全更健康～</div>';
+  html+='</div>';
+  if(star)html+='<div class="starbanner">🌟 今日健康之星：'+USERS[star].emoji+' '+USERS[star].name+'</div>';
+  CATS.forEach(function(c){html+=categoryCard(c,rec,sc)});
+  html+='<div class="card"><div class="card-title">🌿 今日习惯 · 点点就记录</div><div class="hchips">'+habitChips(rec?rec.habits:null,'quick')+'</div></div>';
+  return html;
+}
+
+function viewCalendar(){
+  var p=ui.month.split('-').map(Number), year=p[0], mon=p[1]-1;
+  var first=(new Date(year,mon,1).getDay()+6)%7;
+  var dim=new Date(year,mon+1,0).getDate();
+  var html='<div class="cal-head"><button data-month="-1">‹</button><div class="m">'+year+' 年 '+pad(mon+1)+' 月</div><button data-month="1">›</button></div>';
+  html+='<div class="cal-grid">';
+  ['一','二','三','四','五','六','日'].forEach(function(w){html+='<div class="cal-wd">'+w+'</div>'});
+  for(var i=0;i<first;i++)html+='<div></div>';
+  for(var d=1;d<=dim;d++){
+    var ds=year+'-'+pad(mon+1)+'-'+pad(d);
+    var rec=dayOf(ui.user,ds);
+    var sc=rec?scoresOf(ui.user,ds).overall:null;
+    var cls=sc==null?'none':sc>=90?'s':sc>=75?'a':sc>=60?'b':sc>=40?'c':'d';
+    var td=todayStr()===ds?' today':'';
+    html+='<button class="cal '+cls+td+'" data-action="open-day" data-date="'+ds+'">'+d+'</button>';
+  }
+  html+='</div>';
+  html+='<div class="cal-legend"><span><i style="background:#EFECE7"></i>未记录</span><span><i style="background:#E7A2A2"></i>待加油</span><span><i style="background:#C9A8E0"></i>及格</span><span><i style="background:#9FB8E8"></i>良好</span><span><i style="background:#8FCBB8"></i>优秀</span><span><i style="background:#5FBF8F"></i>王者</span></div>';
+  html+='<div class="card"><div class="card-title">👤 当前查看：'+USERS[ui.user].emoji+' '+USERS[ui.user].name+'</div><div class="cat-sub">点击日期可查看或补记当天。</div></div>';
+  return html;
+}
+
+function viewTrend(){
+  var days=lastNDays(ui.period), u=ui.user;
+  var labels=days, values=days.map(function(d){return scoresOf(ui.user,d).overall});
+  var rec=days.filter(function(d){return dayHas(ui.user,d)});
+  var avg=overallAvg(ui.user,days);
+  var exMin=rec.reduce(function(a,d){return a+dayExerciseMin(ui.user,d)},0);
+  var sleepH=0,sleepN=0;
+  rec.forEach(function(d){var s=dayOf(ui.user,d).sleep;if(s&&s.hours){sleepH+=s.hours;sleepN++}});
+  var avgSleep=sleepN?Math.round(sleepH/sleepN*10)/10:0;
+  var html=periodSel();
+  html+='<div class="chart-wrap"><div class="chart-title">📈 '+u.emoji+' '+u.name+' 综合健康分</div><div id="linechart"></div></div>';
+  html+='<div class="chips">'+
+    '<div class="stat"><b>'+avg+'</b><span>平均健康分</span></div>'+
+    '<div class="stat"><b>'+rec.length+'</b><span>打卡天数</span></div>'+
+    '<div class="stat"><b>'+streakOf(ui.user)+'</b><span>连续天数</span></div>'+
+    '<div class="stat"><b>'+exMin+'</b><span>运动分钟</span></div>'+
+    '<div class="stat"><b>'+avgSleep+'</b><span>平均睡眠(h)</span></div>'+
+    '<div class="stat"><b>'+(rec.length?Math.round(rec.length/ui.period*100):0)+'%</b><span>记录覆盖率</span></div>'+
+  '</div>';
+  html+='<div class="card"><div class="card-title">📊 各板块平均分</div>';
+  CATS.forEach(function(c){
+    var av=rec.length?catAvg(ui.user,days,c.id):0;
+    html+='<div class="avgbar"><div class="ab-head"><span>'+c.emoji+' '+c.name+'</span><b>'+av+'</b></div><div class="bar"><i style="width:'+av+'%;background:'+c.color+'"></i></div></div>';
+  });
+  html+='</div>';
+  setTimeout(function(){var el=$('#linechart');if(el)lineChart(el,labels,[{name:u.name,color:u.color,values:values}],ui.period<=31)},0);
+  return html;
+}
+
+function viewPK(){
+  var days=lastNDays(ui.period);
+  var m=overallAvg('maomao',days), nn=overallAvg('niuniu',days);
+  var verdict=(m===0&&nn===0)?'还没有数据，先记录起来吧':(m===nn?'势均力敌，都很棒！':(m>nn?USERS.maomao.emoji+' 毛毛更健康':USERS.niuniu.emoji+' 牛牛更健康'));
+  var axes=CATS.map(function(c){return {label:c.name,max:100}});
+  var ser=[
+    {name:'毛毛',color:USERS.maomao.color,values:CATS.map(function(c){return catAvg('maomao',days,c.id)})},
+    {name:'牛牛',color:USERS.niuniu.color,values:CATS.map(function(c){return catAvg('niuniu',days,c.id)})}
+  ];
+  var html=periodSel();
+  html+='<div class="verdict"><div class="v-em">🏆</div><div class="v-t">'+verdict+'</div><div class="v-s">'+PERIODS.filter(function(p){return p.id===ui.period})[0].label+'均综合分对比</div>';
+  html+='<div class="vs"><div class="vcard mao"><b>'+m+'</b><span>🐱 毛毛</span></div><div class="vcard niu"><b>'+nn+'</b><span>🐮 牛牛</span></div></div></div>';
+  html+='<div class="chart-wrap"><div class="chart-title">🕸️ 四大板块能力对比</div><div id="radar"></div></div>';
+  html+='<div class="card"><div class="card-title">📊 分项对比</div>';
+  CATS.forEach(function(c){
+    var a=catAvg('maomao',days,c.id), b=catAvg('niuniu',days,c.id);
+    html+='<div class="avgbar"><div class="ab-head"><span>'+c.emoji+' '+c.name+'</span><b>'+(a===b?'持平':(a>b?'毛毛领先':'牛牛领先'))+'</b></div>'+
+      '<div class="cmp-row"><span class="cmp-lbl">🐱 '+a+'</span><div class="bar"><i style="width:'+a+'%;background:'+USERS.maomao.color+'"></i></div></div>'+
+      '<div class="cmp-row"><span class="cmp-lbl">🐮 '+b+'</span><div class="bar"><i style="width:'+b+'%;background:'+USERS.niuniu.color+'"></i></div></div></div>';
+  });
+  html+='</div>';
+  setTimeout(function(){var el=$('#radar');if(el)radarChart(el,axes,ser)},0);
+  return html;
+}
+
+function badgesOf(user){
+  var b=[], streak=streakOf(user);
+  b.push({e:'🔥',l:'连续打卡 7 天',done:streak>=7});
+  b.push({e:'🏅',l:'连续打卡 30 天',done:streak>=30});
+  var days7=lastNDays(7), ex=days7.reduce(function(a,d){return a+dayExerciseMin(user,d)},0);
+  b.push({e:'🏃',l:'本周运动 150 分钟',done:ex>=(Number(store.settings.exerciseGoal)||150)});
+  var readN=recordedDays(user).filter(function(d){var m=dayOf(user,d).mental;return m&&Number(m.read)>0}).length;
+  b.push({e:'📚',l:'累计阅读 10 次',done:readN>=10});
+  var top=recordedDays(user).some(function(d){return scoresOf(user,d).overall>=90});
+  b.push({e:'💯',l:'单日综合 90+',done:top});
+  return b;
+}
+
+function viewInteract(){
+  var other=ui.user==='maomao'?'niuniu':'maomao';
+  var html='<div class="card"><div class="card-title">💌 给对方留言鼓励</div>'+
+    '<div class="field"><textarea id="note-text" placeholder="给 '+USERS[other].emoji+' '+USERS[other].name+' 说点什么吧，比如「记得早点睡哦～」"></textarea></div>'+
+    '<button class="btn" data-action="send-note">发送给 '+USERS[other].emoji+' '+USERS[other].name+'</button></div>';
+  html+='<div class="card"><div class="card-title">🏅 成就徽章</div><div class="badges">';
+  USER_IDS.forEach(function(uid){
+    html+='<div style="flex:none;width:100%"><div style="font-size:13px;font-weight:600;margin:4px 0 6px">'+USERS[uid].emoji+' '+USERS[uid].name+'</div><div class="badges">'+
+      badgesOf(uid).map(function(b){return '<div class="badge'+(b.done?'':' lock')+'"><div class="be">'+b.e+'</div><div class="bl">'+b.l+'</div></div>'}).join('')+
+    '</div></div>';
+  });
+  html+='</div></div>';
+  html+='<div class="card"><div class="card-title">🗨️ 我们的留言</div>';
+  if(!store.notes.length)html+='<div class="cat-sub" style="color:var(--ink2)">还没有留言，快去给对方打打气吧～</div>';
+  store.notes.forEach(function(n){
+    var from=USERS[n.from], to=USERS[n.to];
+    html+='<div class="note '+n.from+'"><div class="n-head">'+from.emoji+' <b>'+from.name+'</b> → '+to.emoji+' '+to.name+'</div>'+
+      '<div class="n-body">'+esc(n.text)+'</div>'+
+      (n.photo?'<img src="'+n.photo+'" alt="留言图片">':'')+
+      '<div class="n-foot"><span>'+n.date+'</span>'+(n.from===ui.user?'<button class="n-del" data-action="delete-note" data-id="'+n.id+'">删除</button>':'')+'</div></div>';
+  });
+  html+='</div>';
+  return html;
+}
+
+/* ---------- sheet (day editor) ---------- */
+function openDay(date){
+  sheet={date:date,user:ui.user,rec:clone(dayOf(ui.user,date)||emptyRecord())};
+  renderSheet();
+}
+function renderSheet(){
+  var u=USERS[sheet.user], rec=sheet.rec;
+  var sleep=rec.sleep||{}, mental=rec.mental||{};
+  var html='<div class="modal-backdrop"><div class="sheet">';
+  html+='<div class="sheet-head"><div class="sh-title">'+u.emoji+' '+u.name+' · '+niceDate(sheet.date)+'</div><button class="close" data-close>✕</button></div>';
+  html+='<div class="sect"><div class="sect-h">😴 睡眠</div>';
+  html+='<div class="row"><div class="field"><label>几点睡</label><input type="time" id="sh-bedtime" value="'+esc(sleep.bedtime||'')+'"></div>'+
+        '<div class="field"><label>几点起</label><input type="time" id="sh-wake" value="'+esc(sleep.wake||'')+'"></div></div>';
+  html+='<div class="field"><label>睡眠质量</label><div class="stars" id="sh-stars"></div></div>';
+  html+='<div class="hours-hint" id="sh-hours">'+(sleep.hours?('约 '+sleep.hours+' 小时'):'')+'</div></div>';
+  html+='<div class="sect"><div class="sect-h">🏃 锻炼</div><div id="sh-exlist"></div>';
+  html+='<div class="type-toggle" id="sh-ex-type"><button data-v="有氧" class="on">🏃 有氧</button><button data-v="无氧">🏋️ 无氧</button></div>';
+  html+='<div class="row" style="margin-top:10px"><div class="field"><input type="text" id="sh-ex-project" placeholder="项目，如 跑步 / 深蹲"></div><div class="field" style="flex:none;width:90px"><input type="number" id="sh-ex-min" placeholder="分钟" min="1"></div></div>';
+  html+='<button class="btn gray small" data-action="sh-ex-add">＋ 添加</button></div>';
+  html+='<div class="sect"><div class="sect-h">📚 精神</div>';
+  html+='<div class="row"><div class="field"><label>阅读分钟</label><input type="number" id="sh-read" value="'+(mental.read||0)+'" min="0"></div>'+
+        '<div class="field"><label>读完/在读的书</label><input type="text" id="sh-book" value="'+esc(mental.book||'')+'"></div></div>';
+  html+='<div class="field"><label>看的电影/剧/展览</label><input type="text" id="sh-movie" value="'+esc(mental.movie||'')+'"></div>';
+  html+='<div class="field"><label>新奇的想法 / 感想（可上传图片）</label><textarea id="sh-idea" placeholder="记录一个奇思妙想～">'+esc(mental.idea||'')+'</textarea></div>';
+  html+='<div class="photo-preview" id="sh-photo">'+(mental.photo?'<img src="'+mental.photo+'"><br><button class="rm" data-action="sh-photo-clear">移除图片</button>':'')+'</div>';
+  html+='<button class="btn gray small" data-action="sh-photo-add" style="margin-top:8px">📷 上传图片</button>';
+  html+='<input type="file" id="sh-photo-input" accept="image/*" style="display:none"></div>';
+  html+='<div class="sect"><div class="sect-h">🌿 习惯</div><div class="hchips" id="sh-habits">'+habitChips(rec.habits,'sheet')+'</div></div>';
+  html+='<button class="btn" data-action="save-day">保存这一天</button>';
+  html+='<button class="btn gray" data-action="delete-day" style="margin-top:8px">清空当天记录</button>';
+  html+='</div></div>';
+  openModal(html);
+  renderSheetStars();renderSheetExercise();
+}
+function renderSheetStars(){
+  var q=sheet.rec.sleep.quality||0, el=$('#sh-stars');
+  if(!el)return;
+  var html='';
+  for(var i=1;i<=5;i++)html+='<button data-action="sh-star" data-v="'+i+'" class="'+(i<=q?'on':'')+'">★</button>';
+  el.innerHTML=html;
+}
+function renderSheetExercise(){
+  var el=$('#sh-exlist');if(!el)return;
+  var list=sheet.rec.exercise||[];
+  el.innerHTML=list.length?list.map(function(e,i){
+    return '<div class="exitem"><span class="xi">'+(e.type==='有氧'?'🏃':'🏋️')+'</span>'+esc(e.type)+' · '+esc(e.project||'未命名')+' · '+e.min+' 分钟'+
+      '<button class="xr" data-action="sh-ex-del" data-i="'+i+'">删除</button></div>';
+  }).join(''):'<div class="cat-sub" style="color:var(--ink2)">还没有运动记录</div>';
+}
+function renderSheetPhoto(){
+  var el=$('#sh-photo');if(!el)return;
+  var p=sheet.rec.mental.photo;
+  el.innerHTML=p?('<img src="'+p+'"><br><button class="rm" data-action="sh-photo-clear">移除图片</button>'):'';
+}
+async function saveSheet(){
+  var rec=clone(sheet.rec);
+  var bed=$('#sh-bedtime').value, wake=$('#sh-wake').value;
+  rec.sleep.bedtime=bed||'';
+  rec.sleep.wake=wake||'';
+  rec.sleep.hours=hoursBetween(bed,wake)||0;
+  rec.mental.read=Number($('#sh-read').value)||0;
+  rec.mental.book=($('#sh-book').value||'').trim();
+  rec.mental.movie=($('#sh-movie').value||'').trim();
+  rec.mental.idea=($('#sh-idea').value||'').trim();
+  rec.updatedAt=new Date().toISOString();
+  closeModal();
+  await op('setDay',{user:sheet.user,date:sheet.date,record:rec});
+  toast('已保存 '+niceDate(sheet.date));
+}
+async function deleteDay(){
+  if(!confirm('确定清空 '+sheet.date+' 的记录？'))return;
+  var d=sheet.date,u=sheet.user;
+  closeModal();
+  await op('deleteDay',{user:u,date:d});
+  toast('已清空');
+}
+
+/* ---------- settings ---------- */
+function openSettings(){
+  var html='<div class="modal-backdrop"><div class="sheet">';
+  html+='<div class="sheet-head"><div class="sh-title">⚙️ 设置</div><button class="close" data-close>✕</button></div>';
+  html+='<div class="field"><label>每日喝水目标（杯）</label><input type="number" id="set-water" value="'+(store.settings.waterGoal||8)+'" min="1"></div>';
+  html+='<div class="field"><label>每周运动目标（分钟，WHO 建议 150）</label><input type="number" id="set-ex" value="'+(store.settings.exerciseGoal||150)+'" min="1"></div>';
+  html+='<button class="btn" data-action="save-settings">保存目标</button>';
+  html+='<div class="sect"><div class="sect-h">☁️ 云端同步（跨国家使用）</div>';
+  html+='<div class="cat-sub" style="font-size:12px;color:var(--ink2);margin-bottom:10px">两人不在同一网络时，接入 Supabase 免费数据库即可全球同步。留空则用本地/局域网。</div>';
+  html+='<div class="field"><label>Supabase 项目地址（URL）</label><input type="text" id="set-sb-url" placeholder="https://xxxx.supabase.co" value="'+esc((cloud&&cloud.url)||'')+'"></div>';
+  html+='<div class="field"><label>公开 anon key</label><input type="text" id="set-sb-key" placeholder="eyJhbGciOi..." value="'+esc((cloud&&cloud.key)||'')+'"></div>';
+  html+='<button class="btn" data-action="connect-cloud">保存并连接云端</button>';
+  html+='<div class="cat-sub" id="sync-status" style="margin-top:8px;font-size:12px;color:var(--ink2)">当前：'+(apiMode==='cloud'?'云端同步中':apiMode==='server'?'局域网服务器':'本地')+'</div>';
+  html+='</div>';
+  html+='<div style="display:flex;gap:10px;margin-top:14px"><button class="btn gray" data-action="export" style="flex:1">导出备份</button><button class="btn gray" data-action="import" style="flex:1">导入备份</button></div>';
+  html+='<input type="file" id="import-file" accept="application/json" style="display:none">';
+  html+='<div class="cat-sub" style="margin-top:14px;color:var(--ink2);font-size:12px">评分参考：睡眠(NSF 7-9h)、运动(WHO 150min/周)、习惯(刷牙/饮水/排便等)。分数由本地算法计算，仅供参考。</div>';
+  html+='</div></div>';
+  openModal(html);
+}
+async function saveSettings(){
+  await op('updateSettings',{waterGoal:Number($('#set-water').value)||8,exerciseGoal:Number($('#set-ex').value)||150});
+  closeModal();toast('已保存');
+}
+async function saveCloud(){
+  var url=($('#set-sb-url').value||'').trim();
+  var key=($('#set-sb-key').value||'').trim();
+  if(url&&key){
+    try{localStorage.setItem('healthhouse_cloud',JSON.stringify({url:url,key:key}))}catch(e){}
+  }else{
+    try{localStorage.removeItem('healthhouse_cloud')}catch(e){}
+  }
+  var st=await load();
+  store=normalize(st);
+  closeModal();
+  render();
+  toast(apiMode==='cloud'?'已连接云端，全球可同步':(apiMode==='server'?'已切换局域网':'已切换本地'));
+}
+function exportData(){
+  var blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='healthhouse-'+todayStr()+'.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(function(){URL.revokeObjectURL(a.href)},1000);
+  toast('已导出');
+}
+
+/* ---------- quick habit actions (today) ---------- */
+async function quickHabitToggle(hid){
+  var u=ui.user,d=todayStr();
+  var rec=clone(dayOf(u,d)||emptyRecord());
+  rec.habits=rec.habits||{};
+  var hb=HABITS.filter(function(x){return x.id===hid})[0];
+  if(hb.type==='tri')rec.habits[hid]=((rec.habits[hid]||0)+1)%3;
+  else if(hb.type==='bool')rec.habits[hid]=!rec.habits[hid];
+  await op('setDay',{user:u,date:d,record:rec});
+}
+async function quickWater(hid,dir){
+  var u=ui.user,d=todayStr();
+  var rec=clone(dayOf(u,d)||emptyRecord());
+  rec.habits=rec.habits||{};
+  var v=(rec.habits[hid]||0)+dir;
+  rec.habits[hid]=Math.max(0,Math.min(20,v));
+  await op('setDay',{user:u,date:d,record:rec});
+}
+
+/* ---------- modal ---------- */
+function openModal(html){var r=$('#modal-root');r.innerHTML=html;r.classList.add('open')}
+function closeModal(){$('#modal-root').classList.remove('open');$('#modal-root').innerHTML=''}
+
+/* ---------- notes ---------- */
+async function sendNote(){
+  var text=($('#note-text').value||'').trim();
+  if(!text){toast('写点什么再发吧');return}
+  var to=ui.user==='maomao'?'niuniu':'maomao';
+  await op('addNote',{note:{id:uid(),from:ui.user,to:to,text:text,date:todayStr(),ts:Date.now()}});
+  toast('已送出鼓励 💌');
+}
+async function delNote(id){await op('deleteNote',{id:id})}
+
+/* ---------- render ---------- */
+function syncUserSwitch(){
+  $$('#uswitch button').forEach(function(b){
+    var on=b.dataset.user===ui.user;
+    b.classList.toggle('on',on);
+  });
+}
+function render(){
+  syncUserSwitch();
+  var v=ui.view, html='';
+  if(v==='today')html=viewToday();
+  else if(v==='calendar')html=viewCalendar();
+  else if(v==='trend')html=viewTrend();
+  else if(v==='pk')html=viewPK();
+  else if(v==='interact')html=viewInteract();
+  $('#view').innerHTML=html;
+  $$('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.nav===v)});
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target;
+  if(!t||!t.closest)return;
+  var nav=t.closest('[data-nav]');
+  if(nav){ui.view=nav.dataset.nav;render();return}
+  var ub=t.closest('#uswitch button');
+  if(ub){ui.user=ub.dataset.user;render();return}
+  if(t.classList&&t.classList.contains('modal-backdrop')){closeModal();return}
+  if(t.closest('[data-close]')){closeModal();return}
+  var mb=t.closest('[data-month]');
+  if(mb){
+    var p=ui.month.split('-').map(Number);
+    var d=new Date(p[0],p[1]-1+Number(mb.dataset.month),1);
+    ui.month=ymOf(d);render();return;
+  }
+  var pb=t.closest('[data-period]');
+  if(pb){ui.period=Number(pb.dataset.period);render();return}
+  var act=t.closest('[data-action]');
+  if(!act)return;
+  var a=act.dataset.action;
+  if(a==='settings')openSettings();
+  else if(a==='open-day')openDay(act.dataset.date);
+  else if(a==='send-note')sendNote();
+  else if(a==='delete-note')delNote(act.dataset.id);
+  else if(a==='save-settings')saveSettings();
+  else if(a==='connect-cloud')saveCloud();
+  else if(a==='export')exportData();
+  else if(a==='import')$('#import-file').click();
+  else if(a==='save-day')saveSheet();
+  else if(a==='delete-day')deleteDay();
+  else if(a==='quick-habit')quickHabitToggle(act.dataset.hid);
+  else if(a==='quick-water')quickWater(act.dataset.hid,Number(act.dataset.dir));
+  else if(a==='sh-habit'){
+    var hb=HABITS.filter(function(x){return x.id===act.dataset.hid})[0];
+    sheet.rec.habits=sheet.rec.habits||{};
+    if(hb.type==='tri')sheet.rec.habits[hb.id]=((sheet.rec.habits[hb.id]||0)+1)%3;
+    else if(hb.type==='bool')sheet.rec.habits[hb.id]=!sheet.rec.habits[hb.id];
+    var eh=$('#sh-habits');if(eh)eh.innerHTML=habitChips(sheet.rec.habits,'sheet');
+  }
+  else if(a==='sh-water'){
+    sheet.rec.habits=sheet.rec.habits||{};
+    var v=(sheet.rec.habits[act.dataset.hid]||0)+Number(act.dataset.dir);
+    sheet.rec.habits[act.dataset.hid]=Math.max(0,Math.min(20,v));
+    var ew=$('#sh-habits');if(ew)ew.innerHTML=habitChips(sheet.rec.habits,'sheet');
+  }
+  else if(a==='sh-star'){
+    sheet.rec.sleep.quality=Number(act.dataset.v);
+    renderSheetStars();
+  }
+  else if(a==='sh-ex-add'){
+    var type=$('#sh-ex-type .on');
+    var typeV=type?type.dataset.v:'有氧';
+    var project=($('#sh-ex-project').value||'').trim();
+    var min=Number($('#sh-ex-min').value)||0;
+    if(min<=0){toast('填一下运动分钟数');return}
+    sheet.rec.exercise=sheet.rec.exercise||[];
+    sheet.rec.exercise.push({type:typeV,project:project,min:min});
+    $('#sh-ex-project').value='';$('#sh-ex-min').value='';
+    renderSheetExercise();
+  }
+  else if(a==='sh-ex-del'){
+    sheet.rec.exercise.splice(Number(act.dataset.i),1);
+    renderSheetExercise();
+  }
+  else if(a==='sh-photo-add')$('#sh-photo-input').click();
+  else if(a==='sh-photo-clear'){sheet.rec.mental.photo='';renderSheetPhoto()}
+});
+document.addEventListener('click',function(e){
+  var t=e.target;
+  if(!t||!t.closest)return;
+  var tt=t.closest('#sh-ex-type [data-v]');
+  if(tt){
+    $$('#sh-ex-type button').forEach(function(b){b.classList.toggle('on',b===tt)});
+    return;
+  }
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='sh-bedtime'||t.id==='sh-wake'){
+    var h=hoursBetween($('#sh-bedtime').value,$('#sh-wake').value);
+    var el=$('#sh-hours');
+    if(el)el.textContent=h?('约 '+h+' 小时'):'';
+  }
+});
+document.addEventListener('change',async function(e){
+  var t=e.target;
+  if(t.id==='sh-photo-input'){
+    var file=t.files&&t.files[0];if(!file)return;
+    try{
+      sheet.rec.mental.photo=await compressImage(file,1280,0.72);
+      renderSheetPhoto();
+    }catch(err){toast('图片处理失败，换个格式试试')}
+  }
+  if(t.id==='import-file'){
+    var f=t.files&&t.files[0];if(!f)return;
+    var r=new FileReader();
+    r.onload=async function(){
+      try{var data=JSON.parse(r.result);await op('replaceState',data);closeModal();toast('导入成功')}catch(err){toast('文件格式不对')}
+    };
+    r.readAsText(f);
+  }
+});
+
+function compressImage(file,maxDim,quality){
+  return new Promise(function(resolve,reject){
+    var reader=new FileReader();
+    reader.onload=function(){
+      var img=new Image();
+      img.onload=function(){
+        var w=img.width,h=img.height,scale=Math.min(1,maxDim/Math.max(w,h));
+        w=Math.round(w*scale);h=Math.round(h*scale);
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(c.toDataURL('image/jpeg',quality));
+      };
+      img.onerror=reject;
+      img.src=reader.result;
+    };
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ---------- boot ---------- */
+(async function(){
+  store=normalize(await load());
+  render();
+})();
+
+})();
+</script>
+</body>
+</html>
