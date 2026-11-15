@@ -74,6 +74,35 @@ main{padding:8px 14px 26px; max-width:600px; margin:0 auto}
   margin-top:12px;border-radius:16px;padding:11px 16px;background:#FBEAF0;color:#B04E6C;
   font-size:13.5px;border:1px solid #F2C9D8;display:flex;align-items:center;gap:6px;
 }
+.starbanner.poke{background:#FFF3E0;border-color:#F5D9A8;color:#B06A1F}
+
+/* daily challenge */
+.challenge{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin-top:12px}
+.challenge .ch-tag{display:inline-block;font-size:10.5px;letter-spacing:.08em;color:var(--accent2);background:#FBEAF0;padding:2px 9px;border-radius:99px;margin-bottom:9px;font-weight:600}
+.challenge .ch-main{display:flex;align-items:center;gap:12px}
+.challenge .ch-emo{font-size:30px;line-height:1;flex:none}
+.challenge .ch-t{font-size:15.5px;font-weight:600;flex:1;line-height:1.35}
+.challenge .ch-done{display:flex;gap:8px;margin-top:12px}
+.challenge .ch-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid var(--line);border-radius:12px;padding:9px 6px;font-size:12.5px;color:var(--ink2);background:var(--bg)}
+.challenge .ch-btn.done{border-color:#B9E0CA;background:#EAF6EF;color:var(--habit);font-weight:600}
+.challenge .ch-btn.mine{border-color:var(--accent);color:var(--accent2);font-weight:600}
+.challenge .ch-btn.mine.done{border-color:#B9E0CA;color:var(--habit)}
+
+/* reactions & poke */
+.react-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.react-bar button{font-size:23px;border:1px solid var(--line);background:var(--bg);border-radius:14px;width:48px;height:48px;padding:0;line-height:1;transition:.12s}
+.react-bar button:active{transform:scale(.86);background:#FBEAF0}
+.react-count{font-size:12px;color:var(--ink2)}
+.poke-btn{display:inline-flex;align-items:center;gap:6px;justify-content:center}
+
+/* win scoreboard */
+.win-bar{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:12px}
+.win-bar .wbox{flex:1;text-align:center;border-radius:14px;padding:12px 8px}
+.win-bar .wbox b{font-size:26px;display:block;line-height:1.1}
+.win-bar .wbox span{font-size:11.5px;opacity:.85}
+.win-bar .wvs{font-size:16px;color:var(--ink2);font-weight:700;flex:none}
+.win-bar .wbox.mao{background:#FBEAF0;color:var(--mao-deep)}
+.win-bar .wbox.niu{background:#E6F2EF;color:var(--niu-deep)}
 
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-top:12px}
 .card-title{font-size:14px;font-weight:600;margin-bottom:12px;letter-spacing:.03em;display:flex;align-items:center;gap:6px}
@@ -131,7 +160,7 @@ main{padding:8px 14px 26px; max-width:600px; margin:0 auto}
 .bar{height:10px;border-radius:99px;background:var(--bg2);overflow:hidden}
 .bar i{display:block;height:100%;border-radius:99px;transition:width .5s}
 .cmp-row{display:flex;align-items:center;gap:8px;margin-top:6px}
-.cmp-lbl{flex:none;width:48px;font-size:12px;color:var(--ink2)}
+.cmp-lbl{flex:none;width:64px;font-size:12px;color:var(--ink2)}
 .cmp-row .bar{flex:1}
 
 /* verdict */
@@ -176,10 +205,12 @@ main{padding:8px 14px 26px; max-width:600px; margin:0 auto}
 
 /* badges */
 .badges{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-top:10px}
-.badge{flex:none;width:88px;background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:10px 6px;text-align:center}
-.badge .be{font-size:24px}
-.badge .bl{font-size:10.5px;color:var(--ink2);margin-top:4px;line-height:1.3}
-.badge.lock{opacity:.4;filter:grayscale(.8)}
+.badge{flex:none;width:96px;background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:10px 6px;text-align:center;border:1px solid transparent}
+.badge .bl{font-size:11px;font-weight:600;line-height:1.35}
+.badge .bs{font-size:10px;color:var(--ink2);margin-top:3px}
+.badge.done{border-color:#B9E0CA;background:#EAF6EF}
+.badge.done .bs{color:var(--habit)}
+.badge.lock{opacity:.45}
 
 /* form */
 .field{margin-bottom:12px}
@@ -244,14 +275,25 @@ main{padding:8px 14px 26px; max-width:600px; margin:0 auto}
   background:rgba(248,247,245,.96);backdrop-filter:saturate(1.5) blur(14px);border-top:1px solid var(--line);
 }
 .tab{flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 0;color:var(--ink2);font-size:10.5px;letter-spacing:.04em}
-.tab .ti{font-size:20px;line-height:1.2}
+.tab .ti{line-height:1.2}
+.tab .ti svg{width:22px;height:22px;display:block}
 .tab.on{color:var(--accent);font-weight:600}
+
+/* avatar & clean icons */
+.avatar{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex:none}
+.avatar.sm{width:20px;height:20px;font-size:11px}
+.ci{display:inline-flex;align-items:center;justify-content:center;flex:none}
+.ci svg{width:20px;height:20px}
+.cat-ico svg{width:22px;height:22px}
+.icon-btn svg{width:19px;height:19px}
+.sect-h .ci svg{width:18px;height:18px}
+.uswitch button.on .avatar{background:#fff !important;color:var(--ink)}
+.rest-tag{display:inline-block;font-size:12px;color:var(--ink2);background:var(--bg2);padding:2px 10px;border-radius:99px}
 
 @media (max-width:420px){
   .brand span{display:none}
   .brand b{font-size:15px}
   .uswitch button{padding:5px 9px;font-size:12.5px}
-  .uswitch button .e{font-size:14px}
 }
 </style>
 </head>
@@ -259,20 +301,20 @@ main{padding:8px 14px 26px; max-width:600px; margin:0 auto}
 <header class="topbar">
   <div class="brand"><b>毛毛牛牛健康屋</b><span>一起住 · 一起健康</span></div>
   <div class="uswitch" id="uswitch">
-    <button data-user="maomao"><span class="e">🐱</span>毛毛</button>
-    <button data-user="niuniu"><span class="e">🐮</span>牛牛</button>
+    <button data-user="maomao"><span class="avatar" style="background:var(--mao)">毛</span>毛毛</button>
+    <button data-user="niuniu"><span class="avatar" style="background:var(--niu)">牛</span>牛牛</button>
   </div>
-  <button class="icon-btn" data-action="settings" aria-label="设置">⚙️</button>
+  <button class="icon-btn" data-action="settings" aria-label="设置"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></button>
 </header>
 
 <main id="view"></main>
 
 <nav class="tabbar">
-  <button class="tab" data-nav="today"><span class="ti">🏠</span>今天</button>
-  <button class="tab" data-nav="calendar"><span class="ti">📅</span>记录</button>
-  <button class="tab" data-nav="trend"><span class="ti">📈</span>趋势</button>
-  <button class="tab" data-nav="pk"><span class="ti">🏆</span>PK</button>
-  <button class="tab" data-nav="interact"><span class="ti">💬</span>互动</button>
+  <button class="tab" data-nav="today"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1Z"/></svg></span>今天</button>
+  <button class="tab" data-nav="calendar"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>记录</button>
+  <button class="tab" data-nav="trend"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V11M4 19h16"/><path d="m6 15 4-4 3 3 5-6"/></svg></span>趋势</button>
+  <button class="tab" data-nav="pk"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a2 2 0 0 0 2 5M17 6h3a2 2 0 0 1-2 5"/></svg></span>PK</button>
+  <button class="tab" data-nav="interact"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/></svg></span>互动</button>
 </nav>
 
 <div id="modal-root"></div>
@@ -324,24 +366,57 @@ function toast(msg){
 
 /* ---------- config ---------- */
 var USERS={
-  maomao:{id:'maomao',name:'毛毛',emoji:'🐱',color:'#E5859F',deep:'#C65D7B'},
-  niuniu:{id:'niuniu',name:'牛牛',emoji:'🐮',color:'#4FA390',deep:'#3A7F70'}
+  maomao:{id:'maomao',name:'毛毛',ch:'毛',color:'#E5859F',deep:'#C65D7B'},
+  niuniu:{id:'niuniu',name:'牛牛',ch:'牛',color:'#4FA390',deep:'#3A7F70'}
 };
 var USER_IDS=['maomao','niuniu'];
 var CATS=[
-  {id:'sleep',name:'睡眠',emoji:'😴',weight:0.25,color:'#7C93D6'},
-  {id:'exercise',name:'锻炼',emoji:'🏃',weight:0.25,color:'#3FA7B5'},
-  {id:'mental',name:'精神',emoji:'📚',weight:0.20,color:'#A98CD6'},
-  {id:'habits',name:'习惯',emoji:'🌿',weight:0.30,color:'#5FBF8F'}
+  {id:'sleep',name:'睡眠',weight:0.25,color:'#7C93D6'},
+  {id:'exercise',name:'锻炼',weight:0.25,color:'#3FA7B5'},
+  {id:'mental',name:'精神',weight:0.20,color:'#A98CD6'},
+  {id:'habits',name:'习惯',weight:0.30,color:'#5FBF8F'}
 ];
 var HABITS=[
-  {id:'brush',name:'早晚刷牙',emoji:'🪥',type:'tri'},
-  {id:'water',name:'喝足水',emoji:'💧',type:'step'},
-  {id:'bowel',name:'规律排便',emoji:'🚽',type:'bool'},
-  {id:'veg',name:'吃蔬果',emoji:'🥗',type:'bool'},
-  {id:'screen',name:'少屏幕',emoji:'📵',type:'bool'}
+  {id:'brush',name:'早晚刷牙',type:'tri',w:15},
+  {id:'water',name:'喝足水',type:'step',w:15},
+  {id:'bowel',name:'规律排便',type:'bool',w:15},
+  {id:'veggie',name:'吃了蔬果',type:'bool',w:14},
+  {id:'screen',name:'少屏幕',type:'bool',w:15},
+  {id:'oily',name:'饮食清淡',type:'bool',w:13},
+  {id:'alcohol',name:'未饮酒',type:'bool',w:13}
+];
+var EXERCISE_GROUPS=[
+  {cat:'有氧',items:['跑步','快走','骑行','游泳','跳绳','徒步','爬楼']},
+  {cat:'无氧',items:['力量训练','自重训练','深蹲','俯卧撑','平板支撑']},
+  {cat:'柔韧',items:['瑜伽','拉伸','普拉提']},
+  {cat:'球类',items:['羽毛球','乒乓球','篮球','足球','网球','其它球类']}
 ];
 var PERIODS=[{id:7,label:'周'},{id:30,label:'月'},{id:90,label:'季'},{id:365,label:'年'}];
+var REACTIONS=['👍','🙌','❤️','💪','🔥','😘'];
+var CHALLENGES=[
+  {e:'🚶',t:'一起步行 15 分钟'},
+  {e:'💧',t:'两人都喝满 8 杯水'},
+  {e:'😴',t:'今晚 23:00 前上床'},
+  {e:'📖',t:'各自读 20 页书'},
+  {e:'🥦',t:'吃一份蔬菜或水果'},
+  {e:'💪',t:'做 20 个深蹲或俯卧撑'},
+  {e:'🧘',t:'拉伸放松 5 分钟'},
+  {e:'❤️',t:'给对方一句真心鼓励'},
+  {e:'🚫',t:'今天不喝酒'},
+  {e:'🥗',t:'今天吃清淡点（不油腻）'},
+  {e:'📵',t:'睡前 1 小时不刷手机'},
+  {e:'🦷',t:'早晚都认真刷牙'}
+];
+var ICONS={
+  sleep:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>',
+  exercise:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>',
+  mental:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg>',
+  habits:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13C12 8 8.5 6 5 6c0 5 3 7 7 7Z"/><path d="M12 16c0-5 3.5-7 7-7 0 5-3 7-7 7Z"/></svg>'
+};
+function avatar(u){return '<span class="avatar" style="background:'+u.color+'">'+u.ch+'</span>'}
+function catIcon(c){return '<span class="ci" style="color:'+c.color+'">'+ICONS[c.id]+'</span>'}
+function exCat(item){for(var i=0;i<EXERCISE_GROUPS.length;i++){if(EXERCISE_GROUPS[i].items.indexOf(item)>=0)return EXERCISE_GROUPS[i].cat}return '其它'}
+function catById(id){for(var i=0;i<CATS.length;i++){if(CATS[i].id===id)return CATS[i]}return {id:id,name:id,color:'#9A928A'}}
 
 /* ---------- state ---------- */
 var store=null, apiMode='local';
@@ -350,7 +425,7 @@ var sheet={date:null,user:null,rec:null};
 
 function defaultSettings(){return {waterGoal:8,exerciseGoal:150}}
 function emptyRecord(){
-  return {sleep:{bedtime:'',wake:'',hours:0,quality:3},exercise:[],mental:{read:0,book:'',movie:'',idea:'',photo:''},habits:{brush:0,water:0,bowel:false,veg:false,screen:false}};
+  return {sleep:{bedtime:'',wake:'',hours:0,quality:3},exercise:[],rest:false,mental:{book:'',movie:'',idea:'',photo:''},habits:{brush:0,water:0,bowel:false,veggie:false,screen:false,oily:false,alcohol:false}};
 }
 
 /* ---------- persistence ---------- */
@@ -361,25 +436,25 @@ function normalize(s){
   if(!s.days||typeof s.days!=='object')s.days={};
   USER_IDS.forEach(function(u){if(!s.days[u]||typeof s.days[u]!=='object')s.days[u]={}});
   if(!Array.isArray(s.notes))s.notes=[];
+  if(!Array.isArray(s.reactions))s.reactions=[];
+  if(!s.pokes||typeof s.pokes!=='object')s.pokes={};
+  if(!s.challenges||typeof s.challenges!=='object')s.challenges={};
   return s;
 }
-var cloud=null;
-function loadCloud(){try{cloud=JSON.parse(localStorage.getItem('healthhouse_cloud')||'null')||null}catch(e){cloud=null}}
-function sbBase(){return String(cloud.url||'').replace(/\/+$/,'')}
+var CLOUD={url:'https://zsnpgxlyidehmvbfqgok.supabase.co',key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzbnBneGx5aWRlaG12YmZxZ29rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMTQzMDMsImV4cCI6MjEwOTg5MDMwM30.0yjVsBGI_R6NiaKlhaxfnuOCrBf068pWL0BXObFwITI'};
+function sbBase(){return String(CLOUD.url||'').replace(/\/+$/,'')}
 async function sbGet(){
-  var r=await fetch(sbBase()+'/rest/v1/healthhouse?id=eq.main&select=data',{headers:{'apikey':cloud.key,'Authorization':'Bearer '+cloud.key},cache:'no-store'});
+  var r=await fetch(sbBase()+'/rest/v1/healthhouse?id=eq.main&select=data',{headers:{'apikey':CLOUD.key,'Authorization':'Bearer '+CLOUD.key},cache:'no-store'});
   if(!r.ok)throw new Error('sb '+r.status);
   var j=await r.json();
   return (j&&j.length&&j[0]&&j[0].data)||null;
 }
 async function sbSet(data){
-  await fetch(sbBase()+'/rest/v1/healthhouse',{method:'POST',headers:{'apikey':cloud.key,'Authorization':'Bearer '+cloud.key,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'},body:JSON.stringify({id:'main',data:data})});
+  data._syncedAt=Date.now();
+  await fetch(sbBase()+'/rest/v1/healthhouse',{method:'POST',headers:{'apikey':CLOUD.key,'Authorization':'Bearer '+CLOUD.key,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'},body:JSON.stringify({id:'main',data:data})});
 }
 async function load(){
-  loadCloud();
-  if(cloud&&cloud.url&&cloud.key){
-    try{apiMode='cloud';return await sbGet()}catch(e){}
-  }
+  try{apiMode='cloud';return await sbGet()}catch(e){}
   try{
     var r=await fetch('api/state',{cache:'no-store'});
     if(r.ok){var j=await r.json();apiMode='server';return j.state||null}
@@ -398,6 +473,9 @@ function applyOp(s,type,payload){
   else if(type==='addNote'){s.notes.unshift(payload.note)}
   else if(type==='deleteNote'){s.notes=s.notes.filter(function(n){return n.id!==payload.id})}
   else if(type==='updateSettings'){s.settings=Object.assign({},s.settings,payload)}
+  else if(type==='react'){s.reactions.unshift(payload.reaction)}
+  else if(type==='poke'){var pk=payload.poke;s.pokes[pk.date+'|'+pk.to]=pk}
+  else if(type==='setChallenge'){s.challenges[payload.date]=s.challenges[payload.date]||{};s.challenges[payload.date][payload.user]=payload.done}
   else if(type==='replaceState'){s=normalize(payload)}
   return s;
 }
@@ -420,6 +498,27 @@ async function op(type,payload){
     try{localStorage.setItem('healthhouse_store',JSON.stringify(store))}catch(e){toast('本机存储已满，建议导出备份')}
   }
   render();
+}
+var cloudTimer=null;
+async function refreshCloud(force){
+  if(apiMode!=='cloud'){if(force)toast('当前未连接云端');return}
+  try{
+    var data=await sbGet();
+    if(data){
+      var changed=!store||!store._syncedAt||(data._syncedAt!==store._syncedAt);
+      if(force||changed){
+        store=normalize(data);
+        var mr=$('#modal-root');
+        if(!(mr&&mr.classList.contains('open')))render();
+        if(force)toast('已刷新');
+      }
+      else if(force){toast('数据已是最新')}
+    }else if(force){toast('云端还没有数据')}
+  }catch(e){if(force)toast('刷新失败，请检查网络')}
+}
+function startCloudSync(){
+  if(cloudTimer)clearInterval(cloudTimer);
+  cloudTimer=setInterval(function(){refreshCloud(false)},12000);
 }
 
 /* ---------- data ---------- */
@@ -452,46 +551,53 @@ function sleepScore(s){
 }
 function exerciseScore(list){
   if(!list||!list.length)return 0;
-  var total=0,hasA=false,hasN=false;
+  var total=0,cats={};
   list.forEach(function(e){
     total+=Number(e.min)||0;
-    if(e.type==='有氧')hasA=true;else if(e.type==='无氧')hasN=true;
+    var c=e.cat||e.type||'其它';
+    if(c)cats[c]=1;
   });
   var dur=0;
   if(total>=60)dur=70;else if(total>=45)dur=60;else if(total>=30)dur=50;
   else if(total>=20)dur=38;else if(total>=10)dur=22;else dur=10;
-  var bal=(hasA&&hasN)?30:((hasA||hasN)?18:0);
+  var ncat=Object.keys(cats).length;
+  var bal=ncat>=2?30:(ncat===1?18:0);
   return dur+bal;
 }
 function mentalScore(m){
   if(!m)return 0;
-  var read=Number(m.read)||0, rs=0;
-  if(read>=60)rs=40;else if(read>=30)rs=30;else if(read>=15)rs=20;else if(read>0)rs=12;
-  var ms=(m.movie&&String(m.movie).trim())?25:0;
-  var is=(m.idea&&String(m.idea).trim())?35:0;
-  return rs+ms+is;
+  var b=(m.book&&String(m.book).trim())?35:0;
+  var mv=(m.movie&&String(m.movie).trim())?30:0;
+  var id=(m.idea&&String(m.idea).trim())?35:0;
+  return b+mv+id;
 }
 function habitsScore(h){
   if(!h)return 0;
-  var brush=Number(h.brush)||0;
-  var b=brush>=2?20:brush===1?10:0;
-  var goal=Number(store.settings.waterGoal)||8;
-  var water=Math.min(Number(h.water)||0,goal*3);
-  var w=Math.round(Math.min(water,goal)/goal*20);
-  var bow=h.bowel?20:0, veg=h.veg?20:0, screen=h.screen?20:0;
-  return b+w+bow+veg+screen;
+  var total=0;
+  HABITS.forEach(function(hb){
+    var v=h[hb.id];
+    if(hb.type==='step'){
+      var goal=Number(store.settings.waterGoal)||8;
+      total+=Math.min(1,(Number(v)||0)/goal)*hb.w;
+    }else if(hb.type==='tri'){
+      total+=((Number(v)||0)/2)*hb.w;
+    }else{
+      total+=(v?1:0)*hb.w;
+    }
+  });
+  return Math.round(Math.min(100,total));
 }
 function scoresOf(user,date){
   var r=dayOf(user,date);
   var sleep=r&&r.sleep?sleepScore(r.sleep):0;
-  var exercise=r&&r.exercise&&r.exercise.length?exerciseScore(r.exercise):0;
+  var exercise=(r&&r.exercise&&r.exercise.length)?exerciseScore(r.exercise):0;
   var mental=r&&r.mental?mentalScore(r.mental):0;
   var habits=r&&r.habits?habitsScore(r.habits):0;
   var overall=Math.round(0.25*sleep+0.25*exercise+0.2*mental+0.3*habits);
   var complete=0;
   if(r&&r.sleep&&r.sleep.hours)complete++;
-  if(r&&r.exercise&&r.exercise.length)complete++;
-  if(r&&r.mental&&(r.mental.read||(r.mental.movie&&r.mental.movie.trim())||(r.mental.idea&&r.mental.idea.trim())))complete++;
+  if(r&&(r.rest||(r.exercise&&r.exercise.length)))complete++;
+  if(r&&r.mental&&((r.mental.book&&r.mental.book.trim())||(r.mental.movie&&r.mental.movie.trim())||(r.mental.idea&&r.mental.idea.trim())))complete++;
   if(r&&r.habits)complete++;
   return {sleep:Math.round(sleep),exercise:Math.round(exercise),mental:Math.round(mental),habits:Math.round(habits),overall:overall,complete:complete};
 }
@@ -515,6 +621,46 @@ function starOf(date){
   var a=scoresOf('maomao',date).overall, b=scoresOf('niuniu',date).overall;
   if(a===0&&b===0)return null;
   return a>=b?'maomao':'niuniu';
+}
+function challengeOf(date){
+  var n=0;for(var i=0;i<date.length;i++)n=(n*31+date.charCodeAt(i))>>>0;
+  return CHALLENGES[n%CHALLENGES.length];
+}
+function currentWeekDays(){
+  var now=new Date();
+  var day=(now.getDay()+6)%7;
+  var mon=new Date(now.getFullYear(),now.getMonth(),now.getDate()-day);
+  var arr=[];
+  for(var i=0;i<7;i++){var x=new Date(mon.getFullYear(),mon.getMonth(),mon.getDate()+i);arr.push(fmt(x))}
+  return arr;
+}
+function weeklyWins(){
+  var weeks={}, seen={};
+  USER_IDS.forEach(function(u){recordedDays(u).forEach(function(d){seen[d]=1})});
+  Object.keys(seen).forEach(function(d){
+    var p=d.split('-').map(Number);
+    var dt=new Date(p[0],p[1]-1,p[2]);
+    var wd=(dt.getDay()+6)%7;
+    var mon=new Date(dt.getFullYear(),dt.getMonth(),dt.getDate()-wd);
+    var key=fmt(mon);
+    weeks[key]=weeks[key]||[];weeks[key].push(d);
+  });
+  var wins={maomao:0,niuniu:0,draw:0};
+  Object.keys(weeks).forEach(function(wk){
+    var days=weeks[wk];
+    var a=overallAvg('maomao',days), b=overallAvg('niuniu',days);
+    if(a===0&&b===0)return;
+    if(a===b){wins.draw++;return}
+    if(a>b)wins.maomao++;else wins.niuniu++;
+  });
+  return wins;
+}
+function reactionsTo(user,date){
+  return store.reactions.filter(function(r){return r.to===user&&r.date===date});
+}
+function challengeStatus(date){
+  var c=store.challenges[date]||{};
+  return {maomao:!!c.maomao,niuniu:!!c.niuniu};
 }
 function catAvg(user,days,cat){
   var rec=days.filter(function(d){return dayHas(user,d)});
@@ -621,16 +767,16 @@ function habitChips(h,mode){
     if(hb.type==='step'){
       var v=h[hb.id]||0;
       html+='<div class="hchip">'+
-        '<span class="he">'+hb.emoji+'</span><span class="hn">'+hb.name+'</span><span class="hs">'+v+'杯</span>'+
+        '<span class="hn">'+hb.name+'</span><span class="hs">'+v+'杯</span>'+
         '<button data-action="'+pre+'water" data-hid="'+hb.id+'" data-dir="-1">−</button>'+
         '<button data-action="'+pre+'water" data-hid="'+hb.id+'" data-dir="1">＋</button></div>';
     }else if(hb.type==='tri'){
       var b=h[hb.id]||0, lbl=['未刷','刷1次','早晚刷'][b];
       var on=b>=2?'done':b===1?'half':'';
-      html+='<div class="hchip '+on+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="he">'+hb.emoji+'</span><span class="hn">'+hb.name+'</span><span class="hs">'+lbl+'</span></div>';
+      html+='<div class="hchip '+on+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="hn">'+hb.name+'</span><span class="hs">'+lbl+'</span></div>';
     }else{
       var on2=h[hb.id]?'done':'';
-      html+='<div class="hchip '+on2+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="he">'+hb.emoji+'</span><span class="hn">'+hb.name+'</span><span class="hs">'+(h[hb.id]?'✓':'点一下')+'</span></div>';
+      html+='<div class="hchip '+on2+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="hn">'+hb.name+'</span><span class="hs">'+(h[hb.id]?'✓':'点一下')+'</span></div>';
     }
   });
   return html;
@@ -638,26 +784,39 @@ function habitChips(h,mode){
 function categoryCard(c,rec,sc){
   var detail='';
   if(c.id==='sleep'){
-    detail = rec&&rec.sleep&&rec.sleep.hours ? ('💤 睡了 '+rec.sleep.hours+' 小时'+(rec.sleep.bedtime?(' · '+rec.sleep.bedtime+' 睡'):'')) : '还没记录昨晚的睡眠';
+    detail = rec&&rec.sleep&&rec.sleep.hours ? ('睡了 '+rec.sleep.hours+' 小时'+(rec.sleep.bedtime?(' · '+rec.sleep.bedtime+' 睡'):'')) : '还没记录昨晚的睡眠';
   }else if(c.id==='exercise'){
-    var mins=dayExerciseMin(ui.user,todayStr());
-    detail = mins ? ('🏃 共 '+mins+' 分钟'+(rec&&rec.exercise?(' · '+rec.exercise.length+' 项'):'')) : '今天还没动起来哦';
+    if(rec&&rec.rest){detail='休息日 · 今天没锻炼'}
+    else{
+      var mins=dayExerciseMin(ui.user,todayStr());
+      detail = mins ? ('共 '+mins+' 分钟'+(rec&&rec.exercise?(' · '+rec.exercise.length+' 项'):'')) : '今天还没动起来';
+    }
   }else if(c.id==='mental'){
     var r=rec&&rec.mental, bits=[];
-    if(r&&r.read)bits.push('📖 读 '+r.read+' 分钟');
-    if(r&&r.movie)bits.push('🎬 '+r.movie);
-    if(r&&r.idea)bits.push('💡 有想法');
-    detail=bits.length?bits.join(' · '):'读点书、看部片、记个想法';
+    if(r&&r.book)bits.push('书 · '+r.book);
+    if(r&&r.movie)bits.push('影 · '+r.movie);
+    if(r&&r.idea)bits.push('有想法');
+    detail=bits.length?bits.join(' · '):'读本书、看部片、记个想法';
   }else{
     var h=rec&&rec.habits, done=h?HABITS.filter(function(x){
       var val=h[x.id];return x.type==='step'?val>=(Number(store.settings.waterGoal)||8):x.type==='tri'?val>=2:!!val;
     }).length:0;
-    detail=done?('✅ 完成 '+done+'/'+HABITS.length+' 项') : '从刷牙、喝水开始吧';
+    detail=done?('完成 '+done+'/'+HABITS.length+' 项') : '从刷牙、喝水开始吧';
   }
   return '<div class="cat" data-action="open-day" data-date="'+todayStr()+'">'+
-    '<div class="cat-ico" style="background:'+tint(c.color,0.14)+'">'+c.emoji+'</div>'+
+    '<div class="cat-ico" style="background:'+tint(c.color,0.14)+';color:'+c.color+'">'+ICONS[c.id]+'</div>'+
     '<div class="cat-mid"><div class="cat-name">'+c.name+'</div><div class="cat-sub">'+detail+'</div></div>'+
     '<div class="cat-score" style="color:'+c.color+'">'+sc[c.id]+'<span>分</span></div></div>';
+}
+function challengeCard(date){
+  var ch=challengeOf(date), st=challengeStatus(date);
+  var html='<div class="challenge"><div class="ch-tag">今日共同挑战</div><div class="ch-main"><div class="ch-emo">'+ch.e+'</div><div class="ch-t">'+ch.t+'</div></div><div class="ch-done">';
+  USER_IDS.forEach(function(u){
+    var done=st[u], mine=u===ui.user;
+    html+='<div class="ch-btn'+(done?' done':'')+(mine?' mine':'')+'"'+(mine?' data-action="toggle-challenge"':'')+'>'+avatar(USERS[u])+' '+USERS[u].name+(done?' ✓':'')+'</div>';
+  });
+  html+='</div></div>';
+  return html;
 }
 
 /* ---------- views ---------- */
@@ -665,14 +824,23 @@ function viewToday(){
   var u=USERS[ui.user], sc=scoresOf(ui.user,todayStr()), rec=dayOf(ui.user,todayStr());
   var g=grade(sc.overall), star=starOf(todayStr()), streak=streakOf(ui.user);
   var html='<div class="hero" style="background:'+gradBg(u)+'">';
-  html+='<div class="hero-top"><div class="hero-date">'+niceDate(todayStr())+'</div><div class="hero-user">'+u.emoji+' '+u.name+'</div></div>';
+  html+='<div class="hero-top"><div class="hero-date">'+niceDate(todayStr())+'</div><div class="hero-user"><span class="avatar" style="background:rgba(255,255,255,.22)">'+u.ch+'</span> '+u.name+'</div></div>';
   html+='<div class="hero-mid"><div class="ring-wrap">'+ring(sc.overall)+'<div class="ring-num"><b>'+sc.overall+'</b><i>健康分</i></div></div>';
-  html+='<div class="hero-side"><div class="grade">'+g.l+' · '+g.t+'</div><div class="hero-sub">综合健康评分</div><div class="hero-streak">🔥 连续 '+streak+' 天</div></div></div>';
+  html+='<div class="hero-side"><div class="grade">'+g.l+' · '+g.t+'</div><div class="hero-sub">综合健康评分</div><div class="hero-streak">连续 '+streak+' 天</div></div></div>';
   if(sc.complete<4)html+='<div class="hero-hint">今日已记录 '+sc.complete+'/4 板块，补全更健康～</div>';
   html+='</div>';
-  if(star)html+='<div class="starbanner">🌟 今日健康之星：'+USERS[star].emoji+' '+USERS[star].name+'</div>';
+  if(star)html+='<div class="starbanner">今日健康之星 · '+USERS[star].name+'</div>';
+  html+=challengeCard(todayStr());
+  var poke=store.pokes[todayStr()+'|'+ui.user];
+  if(poke&&poke.from&&poke.from!==ui.user)html+='<div class="starbanner poke">🔔 '+USERS[poke.from].name+' 催你打卡啦，快补上今天的记录～</div>';
+  var gotReactions=reactionsTo(ui.user,todayStr());
+  if(gotReactions.length){
+    var by={};gotReactions.forEach(function(r){by[r.emoji]=(by[r.emoji]||0)+1});
+    var emoStr=Object.keys(by).map(function(e){return e+'×'+by[e]}).join(' ');
+    html+='<div class="starbanner" style="background:#EFF3FB;border-color:#D5DEF0;color:#4A6090">💌 今天收到 '+gotReactions.length+' 份鼓励：'+emoStr+'</div>';
+  }
   CATS.forEach(function(c){html+=categoryCard(c,rec,sc)});
-  html+='<div class="card"><div class="card-title">🌿 今日习惯 · 点点就记录</div><div class="hchips">'+habitChips(rec?rec.habits:null,'quick')+'</div></div>';
+  html+='<div class="card"><div class="card-title">今日习惯 · 点点就记录</div><div class="hchips">'+habitChips(rec?rec.habits:null,'quick')+'</div></div>';
   return html;
 }
 
@@ -694,12 +862,12 @@ function viewCalendar(){
   }
   html+='</div>';
   html+='<div class="cal-legend"><span><i style="background:#EFECE7"></i>未记录</span><span><i style="background:#E7A2A2"></i>待加油</span><span><i style="background:#C9A8E0"></i>及格</span><span><i style="background:#9FB8E8"></i>良好</span><span><i style="background:#8FCBB8"></i>优秀</span><span><i style="background:#5FBF8F"></i>王者</span></div>';
-  html+='<div class="card"><div class="card-title">👤 当前查看：'+USERS[ui.user].emoji+' '+USERS[ui.user].name+'</div><div class="cat-sub">点击日期可查看或补记当天。</div></div>';
+  html+='<div class="card"><div class="card-title">'+avatar(USERS[ui.user])+' 当前查看：'+USERS[ui.user].name+'</div><div class="cat-sub">点击日期可查看或补记当天。</div></div>';
   return html;
 }
 
 function viewTrend(){
-  var days=lastNDays(ui.period), u=ui.user;
+  var days=lastNDays(ui.period), u=USERS[ui.user];
   var labels=days, values=days.map(function(d){return scoresOf(ui.user,d).overall});
   var rec=days.filter(function(d){return dayHas(ui.user,d)});
   var avg=overallAvg(ui.user,days);
@@ -708,7 +876,7 @@ function viewTrend(){
   rec.forEach(function(d){var s=dayOf(ui.user,d).sleep;if(s&&s.hours){sleepH+=s.hours;sleepN++}});
   var avgSleep=sleepN?Math.round(sleepH/sleepN*10)/10:0;
   var html=periodSel();
-  html+='<div class="chart-wrap"><div class="chart-title">📈 '+u.emoji+' '+u.name+' 综合健康分</div><div id="linechart"></div></div>';
+  html+='<div class="chart-wrap"><div class="chart-title">'+avatar(u)+' '+u.name+' 综合健康分</div><div id="linechart"></div></div>';
   html+='<div class="chips">'+
     '<div class="stat"><b>'+avg+'</b><span>平均健康分</span></div>'+
     '<div class="stat"><b>'+rec.length+'</b><span>打卡天数</span></div>'+
@@ -717,10 +885,10 @@ function viewTrend(){
     '<div class="stat"><b>'+avgSleep+'</b><span>平均睡眠(h)</span></div>'+
     '<div class="stat"><b>'+(rec.length?Math.round(rec.length/ui.period*100):0)+'%</b><span>记录覆盖率</span></div>'+
   '</div>';
-  html+='<div class="card"><div class="card-title">📊 各板块平均分</div>';
+  html+='<div class="card"><div class="card-title">各板块平均分</div>';
   CATS.forEach(function(c){
     var av=rec.length?catAvg(ui.user,days,c.id):0;
-    html+='<div class="avgbar"><div class="ab-head"><span>'+c.emoji+' '+c.name+'</span><b>'+av+'</b></div><div class="bar"><i style="width:'+av+'%;background:'+c.color+'"></i></div></div>';
+    html+='<div class="avgbar"><div class="ab-head"><span>'+catIcon(c)+' '+c.name+'</span><b>'+av+'</b></div><div class="bar"><i style="width:'+av+'%;background:'+c.color+'"></i></div></div>';
   });
   html+='</div>';
   setTimeout(function(){var el=$('#linechart');if(el)lineChart(el,labels,[{name:u.name,color:u.color,values:values}],ui.period<=31)},0);
@@ -730,22 +898,31 @@ function viewTrend(){
 function viewPK(){
   var days=lastNDays(ui.period);
   var m=overallAvg('maomao',days), nn=overallAvg('niuniu',days);
-  var verdict=(m===0&&nn===0)?'还没有数据，先记录起来吧':(m===nn?'势均力敌，都很棒！':(m>nn?USERS.maomao.emoji+' 毛毛更健康':USERS.niuniu.emoji+' 牛牛更健康'));
+  var verdict=(m===0&&nn===0)?'还没有数据，先记录起来吧':(m===nn?'势均力敌，都很棒！':(m>nn?USERS.maomao.name+' 更健康':USERS.niuniu.name+' 更健康'));
   var axes=CATS.map(function(c){return {label:c.name,max:100}});
   var ser=[
     {name:'毛毛',color:USERS.maomao.color,values:CATS.map(function(c){return catAvg('maomao',days,c.id)})},
     {name:'牛牛',color:USERS.niuniu.color,values:CATS.map(function(c){return catAvg('niuniu',days,c.id)})}
   ];
   var html=periodSel();
-  html+='<div class="verdict"><div class="v-em">🏆</div><div class="v-t">'+verdict+'</div><div class="v-s">'+PERIODS.filter(function(p){return p.id===ui.period})[0].label+'均综合分对比</div>';
-  html+='<div class="vs"><div class="vcard mao"><b>'+m+'</b><span>🐱 毛毛</span></div><div class="vcard niu"><b>'+nn+'</b><span>🐮 牛牛</span></div></div></div>';
-  html+='<div class="chart-wrap"><div class="chart-title">🕸️ 四大板块能力对比</div><div id="radar"></div></div>';
-  html+='<div class="card"><div class="card-title">📊 分项对比</div>';
+  html+='<div class="verdict"><div class="v-t">'+verdict+'</div><div class="v-s">'+PERIODS.filter(function(p){return p.id===ui.period})[0].label+'均综合分对比</div>';
+  html+='<div class="vs"><div class="vcard mao"><b>'+m+'</b><span>毛毛</span></div><div class="vcard niu"><b>'+nn+'</b><span>牛牛</span></div></div></div>';
+  var wdays=currentWeekDays();
+  var wm=overallAvg('maomao',wdays), wn=overallAvg('niuniu',wdays), wins=weeklyWins();
+  var wkchamp=(wm===0&&wn===0)?'本周还没人记录，先动起来吧':(wm===wn?'本周打成平手，都很棒！':(wm>wn?'本周冠军：毛毛 🏆':'本周冠军：牛牛 🏆'));
+  html+='<div class="card"><div class="card-title">本周冠军 · 累计胜场</div>';
+  html+='<div class="win-bar"><div class="wbox mao"><b>'+wm+'</b><span>毛毛 本周均分</span></div><div class="wvs">VS</div><div class="wbox niu"><b>'+wn+'</b><span>牛牛 本周均分</span></div></div>';
+  html+='<div class="cat-sub" style="text-align:center;margin-top:10px;font-weight:600;font-size:14px">'+wkchamp+'</div>';
+  html+='<div class="win-bar" style="margin-top:8px"><div class="wbox mao"><b>'+wins.maomao+'</b><span>毛毛 累计胜场</span></div><div class="wvs">:</div><div class="wbox niu"><b>'+wins.niuniu+'</b><span>牛牛 累计胜场</span></div></div>';
+  if(wins.draw)html+='<div class="cat-sub" style="text-align:center;margin-top:6px">平局 '+wins.draw+' 次</div>';
+  html+='</div>';
+  html+='<div class="chart-wrap"><div class="chart-title">四大板块能力对比</div><div id="radar"></div></div>';
+  html+='<div class="card"><div class="card-title">分项对比</div>';
   CATS.forEach(function(c){
     var a=catAvg('maomao',days,c.id), b=catAvg('niuniu',days,c.id);
-    html+='<div class="avgbar"><div class="ab-head"><span>'+c.emoji+' '+c.name+'</span><b>'+(a===b?'持平':(a>b?'毛毛领先':'牛牛领先'))+'</b></div>'+
-      '<div class="cmp-row"><span class="cmp-lbl">🐱 '+a+'</span><div class="bar"><i style="width:'+a+'%;background:'+USERS.maomao.color+'"></i></div></div>'+
-      '<div class="cmp-row"><span class="cmp-lbl">🐮 '+b+'</span><div class="bar"><i style="width:'+b+'%;background:'+USERS.niuniu.color+'"></i></div></div></div>';
+    html+='<div class="avgbar"><div class="ab-head"><span>'+catIcon(c)+' '+c.name+'</span><b>'+(a===b?'持平':(a>b?'毛毛领先':'牛牛领先'))+'</b></div>'+
+      '<div class="cmp-row"><span class="cmp-lbl">毛毛 '+a+'</span><div class="bar"><i style="width:'+a+'%;background:'+USERS.maomao.color+'"></i></div></div>'+
+      '<div class="cmp-row"><span class="cmp-lbl">牛牛 '+b+'</span><div class="bar"><i style="width:'+b+'%;background:'+USERS.niuniu.color+'"></i></div></div></div>';
   });
   html+='</div>';
   setTimeout(function(){var el=$('#radar');if(el)radarChart(el,axes,ser)},0);
@@ -754,34 +931,43 @@ function viewPK(){
 
 function badgesOf(user){
   var b=[], streak=streakOf(user);
-  b.push({e:'🔥',l:'连续打卡 7 天',done:streak>=7});
-  b.push({e:'🏅',l:'连续打卡 30 天',done:streak>=30});
+  b.push({l:'连续打卡 7 天',done:streak>=7});
+  b.push({l:'连续打卡 30 天',done:streak>=30});
   var days7=lastNDays(7), ex=days7.reduce(function(a,d){return a+dayExerciseMin(user,d)},0);
-  b.push({e:'🏃',l:'本周运动 150 分钟',done:ex>=(Number(store.settings.exerciseGoal)||150)});
-  var readN=recordedDays(user).filter(function(d){var m=dayOf(user,d).mental;return m&&Number(m.read)>0}).length;
-  b.push({e:'📚',l:'累计阅读 10 次',done:readN>=10});
+  b.push({l:'本周运动 '+(Number(store.settings.exerciseGoal)||150)+' 分钟',done:ex>=(Number(store.settings.exerciseGoal)||150)});
+  var readN=recordedDays(user).filter(function(d){var m=dayOf(user,d).mental;return m&&(m.book&&String(m.book).trim())}).length;
+  b.push({l:'累计阅读 10 次',done:readN>=10});
   var top=recordedDays(user).some(function(d){return scoresOf(user,d).overall>=90});
-  b.push({e:'💯',l:'单日综合 90+',done:top});
+  b.push({l:'单日综合 90+',done:top});
   return b;
 }
 
 function viewInteract(){
   var other=ui.user==='maomao'?'niuniu':'maomao';
-  var html='<div class="card"><div class="card-title">💌 给对方留言鼓励</div>'+
-    '<div class="field"><textarea id="note-text" placeholder="给 '+USERS[other].emoji+' '+USERS[other].name+' 说点什么吧，比如「记得早点睡哦～」"></textarea></div>'+
-    '<button class="btn" data-action="send-note">发送给 '+USERS[other].emoji+' '+USERS[other].name+'</button></div>';
-  html+='<div class="card"><div class="card-title">🏅 成就徽章</div><div class="badges">';
+  var html='<div class="card"><div class="card-title">给对方今日打卡 击掌 / 点赞</div>';
+  html+='<div class="react-bar">';
+  REACTIONS.forEach(function(e){html+='<button data-action="react" data-emoji="'+e+'" title="'+e+'">'+e+'</button>'});
+  html+='</div>';
+  var sentToday=reactionsTo(other,todayStr()).filter(function(r){return r.from===ui.user});
+  var gotToday=reactionsTo(ui.user,todayStr());
+  html+='<div class="react-count" style="margin-top:10px">已送出：'+(sentToday.length?sentToday.map(function(r){return r.emoji}).join(' '):'还没有')+' · 收到：'+(gotToday.length?gotToday.map(function(r){return r.emoji}).join(' '):'还没有')+'</div>';
+  html+='<button class="btn gray small poke-btn" data-action="poke" style="margin-top:12px">👋 催 '+USERS[other].name+' 打卡</button>';
+  html+='</div>';
+  html+='<div class="card"><div class="card-title">给对方留言鼓励</div>'+
+    '<div class="field"><textarea id="note-text" placeholder="给 '+USERS[other].name+' 说点什么吧，比如「记得早点睡哦～」"></textarea></div>'+
+    '<button class="btn" data-action="send-note">发送给 '+USERS[other].name+'</button></div>';
+  html+='<div class="card"><div class="card-title">成就徽章</div><div class="badges">';
   USER_IDS.forEach(function(uid){
-    html+='<div style="flex:none;width:100%"><div style="font-size:13px;font-weight:600;margin:4px 0 6px">'+USERS[uid].emoji+' '+USERS[uid].name+'</div><div class="badges">'+
-      badgesOf(uid).map(function(b){return '<div class="badge'+(b.done?'':' lock')+'"><div class="be">'+b.e+'</div><div class="bl">'+b.l+'</div></div>'}).join('')+
+    html+='<div style="flex:none;width:100%"><div style="font-size:13px;font-weight:600;margin:4px 0 6px;display:flex;align-items:center;gap:6px">'+avatar(USERS[uid])+' '+USERS[uid].name+'</div><div class="badges">'+
+      badgesOf(uid).map(function(b){return '<div class="badge'+(b.done?' done':' lock')+'"><div class="bl">'+b.l+'</div><div class="bs">'+(b.done?'已达成':'未达成')+'</div></div>'}).join('')+
     '</div></div>';
   });
   html+='</div></div>';
-  html+='<div class="card"><div class="card-title">🗨️ 我们的留言</div>';
+  html+='<div class="card"><div class="card-title">我们的留言</div>';
   if(!store.notes.length)html+='<div class="cat-sub" style="color:var(--ink2)">还没有留言，快去给对方打打气吧～</div>';
   store.notes.forEach(function(n){
     var from=USERS[n.from], to=USERS[n.to];
-    html+='<div class="note '+n.from+'"><div class="n-head">'+from.emoji+' <b>'+from.name+'</b> → '+to.emoji+' '+to.name+'</div>'+
+    html+='<div class="note '+n.from+'"><div class="n-head">'+avatar(from)+' <b>'+from.name+'</b> → '+to.name+'</div>'+
       '<div class="n-body">'+esc(n.text)+'</div>'+
       (n.photo?'<img src="'+n.photo+'" alt="留言图片">':'')+
       '<div class="n-foot"><span>'+n.date+'</span>'+(n.from===ui.user?'<button class="n-del" data-action="delete-note" data-id="'+n.id+'">删除</button>':'')+'</div></div>';
@@ -799,25 +985,34 @@ function renderSheet(){
   var u=USERS[sheet.user], rec=sheet.rec;
   var sleep=rec.sleep||{}, mental=rec.mental||{};
   var html='<div class="modal-backdrop"><div class="sheet">';
-  html+='<div class="sheet-head"><div class="sh-title">'+u.emoji+' '+u.name+' · '+niceDate(sheet.date)+'</div><button class="close" data-close>✕</button></div>';
-  html+='<div class="sect"><div class="sect-h">😴 睡眠</div>';
+  html+='<div class="sheet-head"><div class="sh-title">'+avatar(u)+' '+u.name+' · '+niceDate(sheet.date)+'</div><button class="close" data-close>✕</button></div>';
+  html+='<div class="sect"><div class="sect-h">'+catIcon(catById('sleep'))+' 睡眠</div>';
   html+='<div class="row"><div class="field"><label>几点睡</label><input type="time" id="sh-bedtime" value="'+esc(sleep.bedtime||'')+'"></div>'+
         '<div class="field"><label>几点起</label><input type="time" id="sh-wake" value="'+esc(sleep.wake||'')+'"></div></div>';
   html+='<div class="field"><label>睡眠质量</label><div class="stars" id="sh-stars"></div></div>';
   html+='<div class="hours-hint" id="sh-hours">'+(sleep.hours?('约 '+sleep.hours+' 小时'):'')+'</div></div>';
-  html+='<div class="sect"><div class="sect-h">🏃 锻炼</div><div id="sh-exlist"></div>';
-  html+='<div class="type-toggle" id="sh-ex-type"><button data-v="有氧" class="on">🏃 有氧</button><button data-v="无氧">🏋️ 无氧</button></div>';
-  html+='<div class="row" style="margin-top:10px"><div class="field"><input type="text" id="sh-ex-project" placeholder="项目，如 跑步 / 深蹲"></div><div class="field" style="flex:none;width:90px"><input type="number" id="sh-ex-min" placeholder="分钟" min="1"></div></div>';
-  html+='<button class="btn gray small" data-action="sh-ex-add">＋ 添加</button></div>';
-  html+='<div class="sect"><div class="sect-h">📚 精神</div>';
-  html+='<div class="row"><div class="field"><label>阅读分钟</label><input type="number" id="sh-read" value="'+(mental.read||0)+'" min="0"></div>'+
-        '<div class="field"><label>读完/在读的书</label><input type="text" id="sh-book" value="'+esc(mental.book||'')+'"></div></div>';
+  html+='<div class="sect"><div class="sect-h">'+catIcon(catById('exercise'))+' 锻炼</div>';
+  html+='<label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="sh-rest" '+(rec.rest?'checked':'')+'> 今天是休息日（没锻炼）</label>';
+  html+='<div id="sh-exbox">';
+  html+='<div id="sh-exlist"></div>';
+  var sel='<select id="sh-ex-type" style="width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg)"><option value="">选择运动项目</option>';
+  EXERCISE_GROUPS.forEach(function(g){
+    sel+='<optgroup label="'+g.cat+'">';
+    g.items.forEach(function(it){sel+='<option value="'+it+'">'+it+'</option>'});
+    sel+='</optgroup>';
+  });
+  sel+='</select>';
+  html+='<div class="row" style="margin-top:10px"><div class="field" style="flex:1">'+sel+'</div><div class="field" style="flex:none;width:96px"><input type="number" id="sh-ex-min" placeholder="分钟" min="1"></div></div>';
+  html+='<button class="btn gray small" data-action="sh-ex-add">添加</button>';
+  html+='</div></div>';
+  html+='<div class="sect"><div class="sect-h">'+catIcon(catById('mental'))+' 精神</div>';
+  html+='<div class="field"><label>读完/在读的书</label><input type="text" id="sh-book" value="'+esc(mental.book||'')+'"></div>';
   html+='<div class="field"><label>看的电影/剧/展览</label><input type="text" id="sh-movie" value="'+esc(mental.movie||'')+'"></div>';
   html+='<div class="field"><label>新奇的想法 / 感想（可上传图片）</label><textarea id="sh-idea" placeholder="记录一个奇思妙想～">'+esc(mental.idea||'')+'</textarea></div>';
   html+='<div class="photo-preview" id="sh-photo">'+(mental.photo?'<img src="'+mental.photo+'"><br><button class="rm" data-action="sh-photo-clear">移除图片</button>':'')+'</div>';
-  html+='<button class="btn gray small" data-action="sh-photo-add" style="margin-top:8px">📷 上传图片</button>';
+  html+='<button class="btn gray small" data-action="sh-photo-add" style="margin-top:8px">上传图片</button>';
   html+='<input type="file" id="sh-photo-input" accept="image/*" style="display:none"></div>';
-  html+='<div class="sect"><div class="sect-h">🌿 习惯</div><div class="hchips" id="sh-habits">'+habitChips(rec.habits,'sheet')+'</div></div>';
+  html+='<div class="sect"><div class="sect-h">'+catIcon(catById('habits'))+' 习惯</div><div class="hchips" id="sh-habits">'+habitChips(rec.habits,'sheet')+'</div></div>';
   html+='<button class="btn" data-action="save-day">保存这一天</button>';
   html+='<button class="btn gray" data-action="delete-day" style="margin-top:8px">清空当天记录</button>';
   html+='</div></div>';
@@ -835,9 +1030,12 @@ function renderSheetExercise(){
   var el=$('#sh-exlist');if(!el)return;
   var list=sheet.rec.exercise||[];
   el.innerHTML=list.length?list.map(function(e,i){
-    return '<div class="exitem"><span class="xi">'+(e.type==='有氧'?'🏃':'🏋️')+'</span>'+esc(e.type)+' · '+esc(e.project||'未命名')+' · '+e.min+' 分钟'+
+    var label=(e.cat||e.type||'其它')+' · '+(e.item||e.project||'未命名');
+    return '<div class="exitem"><span>'+esc(label)+'</span><span style="color:var(--ink2)">'+e.min+' 分钟</span>'+
       '<button class="xr" data-action="sh-ex-del" data-i="'+i+'">删除</button></div>';
   }).join(''):'<div class="cat-sub" style="color:var(--ink2)">还没有运动记录</div>';
+  var box=$('#sh-exbox');
+  if(box)box.style.display=sheet.rec.rest?'none':'';
 }
 function renderSheetPhoto(){
   var el=$('#sh-photo');if(!el)return;
@@ -850,7 +1048,6 @@ async function saveSheet(){
   rec.sleep.bedtime=bed||'';
   rec.sleep.wake=wake||'';
   rec.sleep.hours=hoursBetween(bed,wake)||0;
-  rec.mental.read=Number($('#sh-read').value)||0;
   rec.mental.book=($('#sh-book').value||'').trim();
   rec.mental.movie=($('#sh-movie').value||'').trim();
   rec.mental.idea=($('#sh-idea').value||'').trim();
@@ -870,16 +1067,13 @@ async function deleteDay(){
 /* ---------- settings ---------- */
 function openSettings(){
   var html='<div class="modal-backdrop"><div class="sheet">';
-  html+='<div class="sheet-head"><div class="sh-title">⚙️ 设置</div><button class="close" data-close>✕</button></div>';
+  html+='<div class="sheet-head"><div class="sh-title">设置</div><button class="close" data-close>✕</button></div>';
   html+='<div class="field"><label>每日喝水目标（杯）</label><input type="number" id="set-water" value="'+(store.settings.waterGoal||8)+'" min="1"></div>';
   html+='<div class="field"><label>每周运动目标（分钟，WHO 建议 150）</label><input type="number" id="set-ex" value="'+(store.settings.exerciseGoal||150)+'" min="1"></div>';
   html+='<button class="btn" data-action="save-settings">保存目标</button>';
-  html+='<div class="sect"><div class="sect-h">☁️ 云端同步（跨国家使用）</div>';
-  html+='<div class="cat-sub" style="font-size:12px;color:var(--ink2);margin-bottom:10px">两人不在同一网络时，接入 Supabase 免费数据库即可全球同步。留空则用本地/局域网。</div>';
-  html+='<div class="field"><label>Supabase 项目地址（URL）</label><input type="text" id="set-sb-url" placeholder="https://xxxx.supabase.co" value="'+esc((cloud&&cloud.url)||'')+'"></div>';
-  html+='<div class="field"><label>公开 anon key</label><input type="text" id="set-sb-key" placeholder="eyJhbGciOi..." value="'+esc((cloud&&cloud.key)||'')+'"></div>';
-  html+='<button class="btn" data-action="connect-cloud">保存并连接云端</button>';
-  html+='<div class="cat-sub" id="sync-status" style="margin-top:8px;font-size:12px;color:var(--ink2)">当前：'+(apiMode==='cloud'?'云端同步中':apiMode==='server'?'局域网服务器':'本地')+'</div>';
+  html+='<div class="sect"><div class="sect-h">云端同步</div>';
+  html+='<div class="cat-sub" id="sync-status" style="font-size:12px;color:var(--ink2)">当前：'+(apiMode==='cloud'?'已连接云端，自动同步':apiMode==='server'?'局域网服务器':'本地')+'</div>';
+  html+='<button class="btn gray small" data-action="refresh-cloud" style="margin-top:8px">立即刷新数据</button>';
   html+='</div>';
   html+='<div style="display:flex;gap:10px;margin-top:14px"><button class="btn gray" data-action="export" style="flex:1">导出备份</button><button class="btn gray" data-action="import" style="flex:1">导入备份</button></div>';
   html+='<input type="file" id="import-file" accept="application/json" style="display:none">';
@@ -890,20 +1084,6 @@ function openSettings(){
 async function saveSettings(){
   await op('updateSettings',{waterGoal:Number($('#set-water').value)||8,exerciseGoal:Number($('#set-ex').value)||150});
   closeModal();toast('已保存');
-}
-async function saveCloud(){
-  var url=($('#set-sb-url').value||'').trim();
-  var key=($('#set-sb-key').value||'').trim();
-  if(url&&key){
-    try{localStorage.setItem('healthhouse_cloud',JSON.stringify({url:url,key:key}))}catch(e){}
-  }else{
-    try{localStorage.removeItem('healthhouse_cloud')}catch(e){}
-  }
-  var st=await load();
-  store=normalize(st);
-  closeModal();
-  render();
-  toast(apiMode==='cloud'?'已连接云端，全球可同步':(apiMode==='server'?'已切换局域网':'已切换本地'));
 }
 function exportData(){
   var blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});
@@ -944,9 +1124,26 @@ async function sendNote(){
   if(!text){toast('写点什么再发吧');return}
   var to=ui.user==='maomao'?'niuniu':'maomao';
   await op('addNote',{note:{id:uid(),from:ui.user,to:to,text:text,date:todayStr(),ts:Date.now()}});
-  toast('已送出鼓励 💌');
+  toast('已送出鼓励');
 }
 async function delNote(id){await op('deleteNote',{id:id})}
+
+/* ---------- reactions / poke / challenge ---------- */
+async function doReact(emoji){
+  var other=ui.user==='maomao'?'niuniu':'maomao';
+  await op('react',{reaction:{id:uid(),date:todayStr(),from:ui.user,to:other,emoji:emoji,ts:Date.now()}});
+  toast('已送给 '+USERS[other].name+' '+emoji);
+}
+async function doPoke(){
+  var other=ui.user==='maomao'?'niuniu':'maomao';
+  await op('poke',{poke:{date:todayStr(),from:ui.user,to:other,ts:Date.now()}});
+  toast('已催 '+USERS[other].name+' 打卡啦');
+}
+async function toggleChallenge(){
+  var date=todayStr();
+  var done=!((store.challenges[date]||{})[ui.user]);
+  await op('setChallenge',{date:date,user:ui.user,done:done});
+}
 
 /* ---------- render ---------- */
 function syncUserSwitch(){
@@ -974,7 +1171,7 @@ document.addEventListener('click',function(e){
   var nav=t.closest('[data-nav]');
   if(nav){ui.view=nav.dataset.nav;render();return}
   var ub=t.closest('#uswitch button');
-  if(ub){ui.user=ub.dataset.user;render();return}
+  if(ub){ui.user=ub.dataset.user;try{localStorage.setItem('healthhouse_user',ui.user)}catch(e){}render();return}
   if(t.classList&&t.classList.contains('modal-backdrop')){closeModal();return}
   if(t.closest('[data-close]')){closeModal();return}
   var mb=t.closest('[data-month]');
@@ -992,8 +1189,11 @@ document.addEventListener('click',function(e){
   else if(a==='open-day')openDay(act.dataset.date);
   else if(a==='send-note')sendNote();
   else if(a==='delete-note')delNote(act.dataset.id);
+  else if(a==='react')doReact(act.dataset.emoji);
+  else if(a==='poke')doPoke();
+  else if(a==='toggle-challenge')toggleChallenge();
   else if(a==='save-settings')saveSettings();
-  else if(a==='connect-cloud')saveCloud();
+  else if(a==='refresh-cloud')refreshCloud(true);
   else if(a==='export')exportData();
   else if(a==='import')$('#import-file').click();
   else if(a==='save-day')saveSheet();
@@ -1018,14 +1218,13 @@ document.addEventListener('click',function(e){
     renderSheetStars();
   }
   else if(a==='sh-ex-add'){
-    var type=$('#sh-ex-type .on');
-    var typeV=type?type.dataset.v:'有氧';
-    var project=($('#sh-ex-project').value||'').trim();
+    var item=($('#sh-ex-type').value||'').trim();
     var min=Number($('#sh-ex-min').value)||0;
+    if(!item){toast('请选择运动项目');return}
     if(min<=0){toast('填一下运动分钟数');return}
     sheet.rec.exercise=sheet.rec.exercise||[];
-    sheet.rec.exercise.push({type:typeV,project:project,min:min});
-    $('#sh-ex-project').value='';$('#sh-ex-min').value='';
+    sheet.rec.exercise.push({cat:exCat(item),item:item,min:min});
+    $('#sh-ex-min').value='';
     renderSheetExercise();
   }
   else if(a==='sh-ex-del'){
@@ -1034,15 +1233,6 @@ document.addEventListener('click',function(e){
   }
   else if(a==='sh-photo-add')$('#sh-photo-input').click();
   else if(a==='sh-photo-clear'){sheet.rec.mental.photo='';renderSheetPhoto()}
-});
-document.addEventListener('click',function(e){
-  var t=e.target;
-  if(!t||!t.closest)return;
-  var tt=t.closest('#sh-ex-type [data-v]');
-  if(tt){
-    $$('#sh-ex-type button').forEach(function(b){b.classList.toggle('on',b===tt)});
-    return;
-  }
 });
 document.addEventListener('input',function(e){
   var t=e.target;
@@ -1054,6 +1244,7 @@ document.addEventListener('input',function(e){
 });
 document.addEventListener('change',async function(e){
   var t=e.target;
+  if(t.id==='sh-rest'){sheet.rec.rest=t.checked;renderSheetExercise()}
   if(t.id==='sh-photo-input'){
     var file=t.files&&t.files[0];if(!file)return;
     try{
@@ -1093,8 +1284,11 @@ function compressImage(file,maxDim,quality){
 
 /* ---------- boot ---------- */
 (async function(){
+  try{var su=localStorage.getItem('healthhouse_user');if(su==='maomao'||su==='niuniu')ui.user=su}catch(e){}
   store=normalize(await load());
   render();
+  if(apiMode==='cloud')startCloudSync();
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')refreshCloud(false)});
 })();
 
 })();
