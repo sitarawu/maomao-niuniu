@@ -381,7 +381,7 @@ var HABITS=[
   {id:'water',name:'喝足水',type:'step',w:15},
   {id:'bowel',name:'规律排便',type:'bool',w:15},
   {id:'veggie',name:'吃了蔬果',type:'bool',w:14},
-  {id:'screen',name:'少屏幕',type:'bool',w:15},
+  {id:'relax',name:'保持轻松',type:'joy',w:15},
   {id:'oily',name:'饮食清淡',type:'bool',w:13},
   {id:'alcohol',name:'未饮酒',type:'bool',w:13}
 ];
@@ -425,7 +425,7 @@ var sheet={date:null,user:null,rec:null};
 
 function defaultSettings(){return {waterGoal:8,exerciseGoal:150}}
 function emptyRecord(){
-  return {sleep:{bedtime:'',wake:'',hours:0,quality:3},exercise:[],rest:false,mental:{book:'',movie:'',idea:'',photo:''},habits:{brush:0,water:0,bowel:false,veggie:false,screen:false,oily:false,alcohol:false}};
+  return {sleep:{bedtime:'',wake:'',hours:0,quality:3},exercise:[],rest:false,mental:{book:'',movie:'',idea:'',photo:''},habits:{brush:0,water:0,bowel:false,veggie:false,relax:false,joy:'',oily:false,alcohol:false}};
 }
 
 /* ---------- persistence ---------- */
@@ -774,6 +774,10 @@ function habitChips(h,mode){
       var b=h[hb.id]||0, lbl=['未刷','刷1次','早晚刷'][b];
       var on=b>=2?'done':b===1?'half':'';
       html+='<div class="hchip '+on+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="hn">'+hb.name+'</span><span class="hs">'+lbl+'</span></div>';
+    }else if(hb.type==='joy'){
+      var joy=h[hb.id]?true:false;
+      var onj=joy?'done':'';
+      html+='<div class="hchip '+onj+'" data-action="'+pre+'joy"><span class="hn">'+hb.name+'</span><span class="hs">'+(joy?'已记录':'写件开心的')+'</span></div>';
     }else{
       var on2=h[hb.id]?'done':'';
       html+='<div class="hchip '+on2+'" data-action="'+pre+'habit" data-hid="'+hb.id+'"><span class="hn">'+hb.name+'</span><span class="hs">'+(h[hb.id]?'✓':'点一下')+'</span></div>';
@@ -798,10 +802,14 @@ function categoryCard(c,rec,sc){
     if(r&&r.idea)bits.push('有想法');
     detail=bits.length?bits.join(' · '):'读本书、看部片、记个想法';
   }else{
-    var h=rec&&rec.habits, done=h?HABITS.filter(function(x){
-      var val=h[x.id];return x.type==='step'?val>=(Number(store.settings.waterGoal)||8):x.type==='tri'?val>=2:!!val;
-    }).length:0;
-    detail=done?('完成 '+done+'/'+HABITS.length+' 项') : '从刷牙、喝水开始吧';
+    var h=rec&&rec.habits;
+    if(h&&h.joy&&String(h.joy).trim()){detail='今日开心 · '+h.joy}
+    else{
+      var done=h?HABITS.filter(function(x){
+        var val=h[x.id];return x.type==='step'?val>=(Number(store.settings.waterGoal)||8):x.type==='tri'?val>=2:!!val;
+      }).length:0;
+      detail=done?('完成 '+done+'/'+HABITS.length+' 项') : '从刷牙、喝水开始吧';
+    }
   }
   return '<div class="cat" data-action="open-day" data-date="'+todayStr()+'">'+
     '<div class="cat-ico" style="background:'+tint(c.color,0.14)+';color:'+c.color+'">'+ICONS[c.id]+'</div>'+
@@ -1114,6 +1122,40 @@ async function quickWater(hid,dir){
   await op('setDay',{user:u,date:d,record:rec});
 }
 
+/* ---------- 保持轻松（记录开心的事） ---------- */
+var joyMode='quick';
+function joyText(){
+  if(joyMode==='sheet')return ((sheet.rec&&sheet.rec.habits)||{}).joy||'';
+  return ((dayOf(ui.user,todayStr())||{}).habits||{}).joy||'';
+}
+function openJoy(mode){
+  joyMode=mode||'quick';
+  var html='<div class="modal-backdrop"><div class="sheet">';
+  html+='<div class="sheet-head"><div class="sh-title">保持轻松 · 今天开心的事</div><button class="close" data-close>✕</button></div>';
+  html+='<div class="field"><textarea id="joy-text" placeholder="写一件今天让你开心的小事～">'+esc(joyText())+'</textarea></div>';
+  html+='<button class="btn" data-action="save-joy">保存</button>';
+  html+='</div></div>';
+  openModal(html);
+}
+async function saveJoy(){
+  var text=($('#joy-text').value||'').trim();
+  if(joyMode==='sheet'){
+    sheet.rec.habits=sheet.rec.habits||{};
+    sheet.rec.habits.relax=!!text;
+    sheet.rec.habits.joy=text;
+    closeModal();
+    var eh=$('#sh-habits');if(eh)eh.innerHTML=habitChips(sheet.rec.habits,'sheet');
+  }else{
+    var u=ui.user,d=todayStr();
+    var rec=clone(dayOf(u,d)||emptyRecord());
+    rec.habits=rec.habits||{};
+    rec.habits.relax=!!text;
+    rec.habits.joy=text;
+    closeModal();
+    await op('setDay',{user:u,date:d,record:rec});
+  }
+}
+
 /* ---------- modal ---------- */
 function openModal(html){var r=$('#modal-root');r.innerHTML=html;r.classList.add('open')}
 function closeModal(){$('#modal-root').classList.remove('open');$('#modal-root').innerHTML=''}
@@ -1200,6 +1242,9 @@ document.addEventListener('click',function(e){
   else if(a==='delete-day')deleteDay();
   else if(a==='quick-habit')quickHabitToggle(act.dataset.hid);
   else if(a==='quick-water')quickWater(act.dataset.hid,Number(act.dataset.dir));
+  else if(a==='quick-joy')openJoy('quick');
+  else if(a==='sh-joy')openJoy('sheet');
+  else if(a==='save-joy')saveJoy();
   else if(a==='sh-habit'){
     var hb=HABITS.filter(function(x){return x.id===act.dataset.hid})[0];
     sheet.rec.habits=sheet.rec.habits||{};
